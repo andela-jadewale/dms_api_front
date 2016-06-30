@@ -1,7 +1,7 @@
 module.exports = (function () {
   'use strict';
 
-  var responsehelper  = require('./response_helper'),
+  var responseHelper  = require('./response_helper'),
     validateUser = require('./validate_users');
 
   /**
@@ -9,25 +9,23 @@ module.exports = (function () {
   * @param  {String} roles role to add to document
   * @param  {Object} req instance of request
   * @param  {Object} res instance of response
-  * @param  {Object} jwt instance of route authentication
   * @param  {Object} Users mongoose model
   * @param  {Object} bcrypt instance of bcrypt to encrypt password
   * @param  {Object} salt encrpt password with bcrypt
-  * @param  {Object} app instance of express
   * saves user information if they have a valid role
   * @return {Void}
   */
-  var checkRole = function(err, role, req, res, jwt, Users, bcrypt, salt, app) {
-    if(err) {
-      send409Error(res, err);
+  var checkRole = function(obj) {
+    if(obj.err) {
+      send409Error(obj.res, obj.err);
     }
-    if(role.length) {
-      var addUser = new Users(validateUser
-        .parseCreateData(req, bcrypt, salt));
-      saveUser(addUser, res, jwt, app);
+    if(obj.role.length) {
+      var addUser = new obj.Users(validateUser
+        .parseCreateData(obj.req, obj.bcrypt, obj.salt));
+      saveUser(addUser, obj.res);
     }
     else{
-      responsehelper.response(res, 409, {'error': 'undefined role'});
+      responseHelper.response(obj.res, 409, {'error': 'undefined role'});
     }
   };
 
@@ -42,13 +40,13 @@ module.exports = (function () {
   * depending on the result
   * @return {Void}
   */
-  var checkUser = function(err, user, req, res, jwt, app) {
-    if(err) {
-      send409Error(res, err);
+  var checkUser = function(obj, user, jwt, app) {
+    if(obj.err) {
+      send409Error(obj.res, obj.err);
     }
-    user ? sendOkResponse(res, 200, {'token': getToken(user, jwt, app),
+    user ? sendOkResponse(obj.res, 200, {'token': getToken(user, jwt, app),
       'data': user}) :
-    sendOkResponse(res, 200, {'data' : 'Invalid username or password'});
+    sendOkResponse(obj.res, 200, {'data' : 'Invalid username or password'});
   };
 
   /**
@@ -58,7 +56,7 @@ module.exports = (function () {
   * @return {Void}
   */
   var send409Error = function(res, err) {
-    responsehelper.response(res, 409,
+    responseHelper.response(res, 409,
       {error: err.message || err.errors[0].message});
   };
 
@@ -70,7 +68,7 @@ module.exports = (function () {
   * @return {Void}
   */
   var sendOkResponse = function(res, num, data) {
-    responsehelper.response(res, num, data);
+    responseHelper.response(res, num, data);
   };
 
   /**
@@ -79,21 +77,31 @@ module.exports = (function () {
   * @return {Void}
   */
   var send409Manual = function(res) {
-    responsehelper.response(res, 409, {'error':
+    responseHelper.response(res, 409, {'error':
       'check manual for params'});
+  };
+
+  var parseParams = function (err, role, req, res, Users, bcrypt, salt) {
+    return {
+      'err': err,
+      'role': role,
+      'req': req,
+      'res': res,
+      'Users': Users,
+      'bcrypt': bcrypt,
+      'salt': salt
+    };
   };
 
   /**
   * @param  {Object} addUser User collection in mongoose
   * @param  {Object} res instance of response
-  * @param  {Object} jwt instance of route authentication
-  * @param  {Object} app instance of express
   * save user to database and send response
   * @return {Void}
   */
-  function saveUser(addUser, res, jwt, app) {
+  function saveUser(addUser, res) {
     addUser.save(function(err, user) {
-      sendResponse(err, user, res, jwt, app);
+      sendResponse(err, user, res);
     });
   }
 
@@ -101,18 +109,15 @@ module.exports = (function () {
   * @param  {Object} err mongoose error
   * @param  {Object} user user object found in database
   * @param  {Object} res instance of response
-  * @param  {Object} jwt instance of route authentication
-  * @param  {Object} app instance of express
   * sends response to user
   * @return {Void}
   */
-  function sendResponse(err, user, res, jwt, app) {
+  function sendResponse(err, user, res) {
     if(err) {
       send409Error(res, err);
     }
     if(user) {
-      sendOkResponse(res, 201, {'token': getToken(user, jwt, app),
-        'message':'user created'});
+      sendOkResponse(res, 201, {'message': 'user created'});
     }
   }
 
@@ -134,7 +139,8 @@ module.exports = (function () {
     send409Error: send409Error,
     sendOkResponse: sendOkResponse,
     send409Manual: send409Manual,
-    checkUser: checkUser
+    checkUser: checkUser,
+    parseParams: parseParams
   };
 
 })();
