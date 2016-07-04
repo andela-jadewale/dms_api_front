@@ -1,0 +1,23 @@
+{
+  "name": "dms-api",
+  "description": "Manages access to documents and creates users",
+  "main": "server.js",
+  "authors": [
+    "jolaade"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "management",
+    "documents",
+    "roles",
+    "objects"
+  ],
+  "homepage": "https://github.com/andela-jadewale/dms_api",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
