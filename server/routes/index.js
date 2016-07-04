@@ -19,6 +19,10 @@
 
     // Routes documents
     require('./documents')(app, Schema, db, jwt);
+
+    app.get('/', function (req, res) {
+      res.render('index.ejs', {});
+    });
   };
 
 })();

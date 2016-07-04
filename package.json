@@ -22,10 +22,13 @@
   "dependencies": {
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.1",
+    "browser-sync": "^2.13.0",
     "chai": "^3.5.0",
     "dotenv": "^2.0.0",
     "express": "latest",
     "faker": "^3.1.0",
+    "gulp": "^3.9.1",
+    "gulp-live-server": "0.0.30",
     "istanbul": "^0.4.4",
     "jsonwebtoken": "^7.0.1",
     "mocha": "^2.5.3",

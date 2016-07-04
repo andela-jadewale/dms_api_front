@@ -76,7 +76,8 @@
       "process",
       "require",
       "module",
-      "faker"
+      "faker",
+      "__dirname"
     ],
     "globals": {
 
