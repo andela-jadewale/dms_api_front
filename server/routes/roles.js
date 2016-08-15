@@ -16,11 +16,11 @@ module.exports = function(app, Schema, db, jwt) {
     // Authenticates roles have token for routes
     auth = require('../middleware/jstokensverification')(app, jwt);
 
+  app.route('/api/v1/roles/').get(Roles.getRoles);
+
   // Authenticates all roles route below
   app.use('/api/v1/roles/', auth.apiRoutes);
 
   // Gets roles and creates roles
-  app.route('/api/v1/roles/')
-    .get(Roles.getRoles)
-    .post(Roles.createRole);
+  app.route('/api/v1/roles/').post(Roles.createRole);
 };

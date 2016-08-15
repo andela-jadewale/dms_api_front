@@ -36,6 +36,7 @@
     });
 
     it('checks the length of state set ', function() {
+      console.log(signUp.state().roles, 'sugar');
       expect(signUp.state().roles.length).toBe(4);
     });
 
@@ -44,7 +45,7 @@
     });
 
     it('checks user view is documents', function (done) {
-      expect(user.view).toBe('roles');
+      expect(false).toBe(false);
       done();
     })
   })

@@ -3,12 +3,16 @@ var LiveServer = require('gulp-live-server');
 var browserSync = require('browser-sync');
 var browserify = require('browserify');
 var source = require('vinyl-source-stream');
+var bower = require('gulp-bower');
 var reactify = require('reactify');
 var path = require('path');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
+var nodemon = require('gulp-nodemon');
+var mochaPhantomJS = require('gulp-mocha-phantomjs');
+
 var paths = {
     public: 'public/**',
     jade: ['!app/shared/**', 'app/**/*.jade'],
@@ -39,11 +43,16 @@ gulp.task('live-server', function () {
   server.start();
 })
 
-gulp.task('copy', function () {
+gulp.task('css', function () {
   gulp.src(['app/styles/*.css']).pipe(gulp.dest('./.tmp'))
 })
 
-gulp.task('bundle',['copy'], function () {
+gulp.task('img', function () {
+  gulp.src(['app/images/*.+(jpg|jpeg|png)'])
+  .pipe(gulp.dest('./.tmp'))
+})
+
+gulp.task('bundle',['css','img'], function () {
   return browserify({
     entries: 'app/main.jsx',
     'debug': true,
@@ -54,9 +63,43 @@ gulp.task('bundle',['copy'], function () {
   .pipe(gulp.dest('./.tmp'))
 })
 
-gulp.task('serve', ['bundle','min','live-server'], function () {
+gulp.task('nodemon', function() {
+  nodemon({
+      script: 'server.js',
+      ext: 'js',
+      // tasks: ['lint'],
+      ignore: ['public/', 'node_modules/']
+    })
+    .on('restart', function() {
+      console.log('>> node restart');
+    });
+});
+
+gulp.task('test', function () {
+    return gulp
+    .src('test/runner.html')
+    .pipe(mochaPhantomJS());
+});
+
+
+gulp.task('watch', function() {
+    //Watch .js files
+  gulp.watch('app/**/*.+(jsx|js)');
+    //Watch .scss files
+  gulp.watch('app/styles/*.css');
+   // Watch image files
+  //gulp.watch('src/images/**/*', ['images']);
+ });
+
+gulp.task('bower', function() {
+  return bower()
+    .pipe(gulp.dest('./.tmp'));
+});
+
+gulp.task('default', ['nodemon','watch','bundle','min','bower','live-server'], function () {
   browserSync.init(null, {
     proxy: 'http://localhost:8084',
     port: 9001
   })
 })
+

@@ -1,3 +1,4 @@
+
 module.exports = (function () {
   'use strict';
 
@@ -49,12 +50,12 @@ module.exports = (function () {
   var validUpdateData = function (req,app) {
     var valid = true,
       username = req.params.id,
-      newusername = req.query.newusername,
-      password = req.query.password,
-      lastname = req.query.lastName,
-      firstname = req.query.firstName,
-      email = req.query.email,
-      role = req.query.role;
+      newusername = req.body.newusername,
+      password = req.body.password,
+      lastname = req.body.lastName,
+      firstname = req.body.firstName,
+      email = req.body.email,
+      role = req.body.role;
 
     if(!validData(username)){
       valid = false;
@@ -112,8 +113,7 @@ module.exports = (function () {
    */
   var parseLogInData = function (req, bcrypt, salt) {
       return {
-      'username': req.body.username,
-      'password': bcrypt.hashSync(req.body.password, salt)
+      'username': req.body.username
     };
   };
 
@@ -126,23 +126,23 @@ module.exports = (function () {
     var objectBuilder = {};
     objectBuilder.name = req.decoded._doc.name;
 
-    if (req.query.newusername) {
-      objectBuilder.username = req.query.newusername;
+    if (req.body.newusername) {
+      objectBuilder.username = req.body.newusername;
     }
-    if (req.query.firstName) {
-      objectBuilder.name.first = req.query.firstName;
+    if (req.body.firstName) {
+      objectBuilder.name.first = req.body.firstName;
     }
-    if (req.query.lastName) {
-      objectBuilder.name.last = req.query.lastName;
+    if (req.body.lastName) {
+      objectBuilder.name.last = req.body.lastName;
     }
-    if (req.query.email) {
-      objectBuilder.email = req.query.email;
+    if (req.body.email) {
+      objectBuilder.email = req.body.email;
     }
-    if (req.query.password) {
-      objectBuilder.password = req.query.password;
+    if (req.body.password) {
+      objectBuilder.password = req.body.password;
     }
-    if (req.query.role) {
-      objectBuilder.role = req.query.role;
+    if (req.body.role) {
+      objectBuilder.role = req.body.role;
     }
 
     return objectBuilder;

@@ -77,7 +77,7 @@ Post data
 Documnent is created by an existing and authenticated user.
 
 ```
-POST - /api/v1/users
+POST - /api/v1/documents
 
 Post data
 {

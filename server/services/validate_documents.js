@@ -57,7 +57,7 @@ module.exports = (function () {
   var roleUpdate = function (req) {
     var updates = [];
     updates[0] = parseDocsUpdate(req);
-    updates[1] = {$push: {acess: req.body.role}};
+    updates[1] = {$push: {access: req.body.role}};
 
     return updates;
   };
@@ -68,10 +68,17 @@ module.exports = (function () {
   * @return {Object} Document object to model in database
   */
   var parseDoc = function (req) {
+    var role = [];
+
+    if(req.body.role) {
+      role.push(req.body.role);
+    }
+
     return {
       'ownerId' : req.body.id,
       'title' : req.body.title,
       'content' : req.body.content,
+      'access' : role,
       'createdAt' : new Date(),
       'modifiedAt' : new Date()
     };
@@ -83,12 +90,18 @@ module.exports = (function () {
   * @return {Object} query built
   */
   var getQueryDocs = function (req) {
-    if(req.query.date) {
     var date = new Date(req.query.date);
 
+    if(req.query.date && req.query.role) {
+      return { 'createdAt':
+        {'$gte': new Date(date.setDate(date.getDate())),
+        '$lt': req.query.newDate } , 'access' : req.query.role };
+    }
+
+    if(req.query.date) {
     return {'createdAt':
-              {'$gte': new Date(date.setDate(date.getDate() - 1)),
-              '$lt': req.query.date }
+              {'$gte': new Date(date.setDate(date.getDate())),
+              '$lt': req.query.newDate }
     };
     }
 

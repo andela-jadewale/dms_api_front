@@ -43,9 +43,17 @@
     */
     var logIn = function (req, res) {
       validateUser.validLogInData(req) ?
-        getUser(req, res, validateUser.parseLogInData(req,
-          bcrypt, salt)) :  helper.send409Manual(res);
+        getUser(req, res, validateUser.parseLogInData(req), bcrypt)
+        :  helper.send409Manual(res);
     };
+
+    function parsePassword(obj) {
+      if(obj) {
+        return obj;
+      }
+
+      return '';
+    }
 
     /**
     * @param  {Object} req request instance
@@ -53,16 +61,29 @@
     * gets a user in the database
     * @return {Void}
     */
-    var getUser = function (req, res, data) {
+    var getUser = function (req, res, data, bcrypt) {
       if (!data.username) {
         data = {'_id': req.params.id};
       }
       Users.findOne(data, function (err, user) {
-        var helperObj = helper.parseParams(err, '', req, res);
-
-        helper.checkUser(helperObj, user, jwt, app);
+        var conn = {'res': res, 'req': req};
+        ((err) || !(user)) ? helper.send409Manual(res) :
+        compareUser(parsePassword(req.body.password), user ,
+          user.password, conn);
       });
     };
+
+    function sendUserInformation(helperObj, user) {
+      helper.checkUser(helperObj, user, jwt, app);
+    }
+
+    function compareUser(password, user, hash, conn) {
+      bcrypt.compare(password , hash, function(err, found) {
+        var helperObj = helper.parseParams(err, '', conn.req, conn.res);
+        found ? sendUserInformation(helperObj, user)
+        : helper.send409Manual(conn.res);
+      });
+    }
 
     /**
     * @param  {Object} req request instance
