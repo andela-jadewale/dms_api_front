@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mocha</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../node_modules/mocha/mocha.css" />
+    </head>
+    <body>
+        <script src="../node_modules/should/should.js"></script>
+        <script src="../node_modules/mocha/mocha.js"></script>
+        <script>mocha.setup('bdd')</script>
+        <script>
+            describe('true', function () {
+                it('should be true', function () {
+                    true.should.equal(true);
+                });
+            });
+        </script>
+        <script>
+            mocha.run();
+        </script>
+    </body>
+</html>
+
+<!--
+
+/*(function() {
+
+'use strict';
+
+  var signUpPath = '../../../app/components/SignUp.jsx';
+  jest.dontMock(signUpPath);
+
+  var React = require('react'),
+    ReactDOM = require('react-dom'),
+    TestUtils = require('react-addons-test-utils'),
+    Button = require('../../../app/components/Buttons.jsx'),
+    Bar = require('../../../app/components/Header.jsx'),
+    SignUp = require(signUpPath);
+
+   describe('SignUp', function() {
+     var signUp = TestUtils.renderIntoDocument(<SignUp/>);
+     var form = TestUtils.findRenderedDOMComponentWithTag(signUp, 'span');
+     var button = TestUtils.findRenderedDOMComponentWithTag(signUp, 'button');
+      // Verify that it has the correct content
+      it('changes the text after click', function () {
+        console.log(TestUtils.isElement(Button), 'hello');
+        console.log(TestUtils.isElement(Bar), 'not');
+        console.log(TestUtils.isDOMComponent(Button), 'DOM')
+        console.log(ReactDOM.findDOMNode(form).length, 'here');
+        console.log('figure    ');
+        console.log(' ')
+        expect(TestUtils.isCompositeComponent(signUp)).toBeTruthy();
+       //expect(ReactDOM.findDOMNode(form).textContent).toBe('Sign Up')
+       //console.log(button);
+      //expect(button.textContent).toEqual('Already have an account ?  Login');
+      });
+      //expect(ReactDOM.findDOMNode(button).textContent).toBe('Sign Up');
+   });
+
+
+}());
+
+
+/*
+    expect = require('chai').expect,
+    shallow = require('enzyme').shallow,
+    mount = require('enzyme').mount;
+ */
+
+
+/*
+
+  describe('SignUp', function() {
+     var signUp = TestUtils.renderIntoDocument(<SignUp/>);
+     var form = TestUtils.findRenderedDOMComponentWithTag(signUp, 'span');
+     var input = TestUtils.findRenderedDOMComponentWithTag(signUp, 'TextField');
+      // Verify that it has the correct content
+      it('changes the text after click', function () {
+        console.log(ReactDOM.findDOMNode(form).length, 'here');
+        console.log('figure    ');
+        console.log(' ')
+         console.log(ReactDOM.findDOMNode(input), 'here input');
+        expect(TestUtils.isCompositeComponent(signUp)).toBeTruthy();
+       //expect(ReactDOM.findDOMNode(form).textContent).toBe('Sign Up')
+       //console.log(button);
+      //expect(button.textContent).toEqual('Already have an account ?  Login');
+      });
+      //expect(ReactDOM.findDOMNode(button).textContent).toBe('Sign Up');
+   });
+ */
+-->
