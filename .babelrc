@@ -1,0 +1,4 @@
+{
+  "presets": ["airbnb","stage-3"],
+  "plugins": ["transform-async-to-generator"]
+}
