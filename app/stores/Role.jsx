@@ -7,12 +7,16 @@ var eventEmitter = {};
 function Role() {
   'use strict';
   var listeners = [];
+  var role = {};
+
+  function getItems() {
+    return role;
+  }
 
   function triggerListeners() {
-    var role = {};
     listeners.forEach(function(listener) {
       listener(role);
-    });
+    })
   }
 
   function getEventEmitter(obj) {
@@ -22,6 +26,8 @@ function Role() {
   function showRole(obj) {
     getEventEmitter(obj);
     obj.data.self.setState({show: true});
+    role.view = 'show role';
+    triggerListeners();
   }
 
   function addRole(obj) {
@@ -29,7 +35,6 @@ function Role() {
   }
 
   function processRoles(res) {
-
     if(res.role) {
       eventEmitter.setState({message: 'role created'});
       eventEmitter.setState({snack: true});
@@ -38,8 +43,11 @@ function Role() {
       eventEmitter.setState({message: 'Error creating role'});
       eventEmitter.setState({snack: true});
     }
+    role.view = 'show role';
+    triggerListeners();
 
   }
+
   function onChange(listener) {
     listeners.push(listener);
   }
@@ -52,14 +60,15 @@ function Role() {
         break;
         case 'Show': showRole({'data': e.payload});
         break;
-
       }
     }
   });
 
   return {
+    getItems: getItems,
     onChange: onChange
-  };
+  }
+
 }
 
 module.exports = new Role();

@@ -105,7 +105,9 @@
     "collectCoverage": true,
     "collectCoverageOnlyFrom": {
       "app/actions/User.jsx": true,
+      "app/actions/Role.jsx": true,
       "app/stores/User.jsx": true,
+       "app/stores/Role.jsx": true,
       "app/dispatcher/dispatcher.js": true
     }
   },

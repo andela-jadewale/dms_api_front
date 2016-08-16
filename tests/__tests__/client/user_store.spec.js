@@ -37,7 +37,7 @@
 
     it('checks the length of state set ', function() {
       console.log(signUp.state().roles, 'sugar');
-      expect(signUp.state().roles.length).toBe(4);
+      expect(signUp.state().roles.length).toBe(1);
     });
 
     it('sets snackbar message state to open ', function() {
