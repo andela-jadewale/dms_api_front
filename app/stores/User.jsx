@@ -117,6 +117,7 @@ function User() {
     else{
       getSelf().setState({load: false});
       getSelf().setState({errors: true});
+      getSelf().setState({text: 'Authentication Failed'});
       user.view = 'Authentication Failed';
     }
     triggerListeners();

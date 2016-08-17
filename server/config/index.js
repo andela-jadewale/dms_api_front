@@ -14,7 +14,10 @@
   };
 
   if(process.env.MONGODB_URI) {
-    config = process.env.MONGODB_URI;
+    config =
+      {'db': process.env.MONGODB_URI,
+      secretToken: process.env.SECRET_TOKEN
+      };
   }
 
   module.exports = config;
