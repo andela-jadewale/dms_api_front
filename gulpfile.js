@@ -96,7 +96,7 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('./.tmp'));
 });
 
-gulp.task('default', ['nodemon','watch','bundle','min','bower','live-server'], function () {
+gulp.task('serve', ['nodemon','watch','bundle','min','bower','live-server'], function () {
   browserSync.init(null, {
     proxy: 'http://localhost:8084',
     port: 9001

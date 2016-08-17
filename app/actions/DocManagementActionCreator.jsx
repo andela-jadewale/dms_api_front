@@ -1,6 +1,12 @@
 var dispatcher = require('../dispatcher/dispatcher.js');
 
 module.exports = {
+  emitAction: function (data, type) {
+    dispatcher.dispatch({
+      payload: data,
+      type: 'docMan:'+ type
+    })
+  },
   signUpView: function (data) {
     dispatcher.dispatch({
       payload: data,
@@ -89,12 +95,6 @@ module.exports = {
     dispatcher.dispatch({
       payload: data,
       type: 'docMan:Find'
-    })
-  },
-  init: function () {
-    dispatcher.dispatch({
-      payload: null,
-      type: 'docMan:Init'
     })
   }
 }

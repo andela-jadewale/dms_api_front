@@ -7,6 +7,7 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
   self = null,
   userData = {},
   Token = require('../services/Token.js'),
+  DataSource = require('../services/DataSource.js'),
   data = '';
 
 function User() {
@@ -105,6 +106,7 @@ function User() {
       getSelf().setState({load: false});
       getSelf().setState({open: true});
       userData = res.data;
+      DataSource.setUserData(res.data);
       Token.setToken(res.token);
       Storage.setLogin(setUserData(res.token,
         res.data._id, res.data.username,

@@ -226,6 +226,27 @@ body{
       padding-left: 2%;
     }
 
+    .placeHolder:nth-child(1) {
+        color: black;
+    }
+
+    .placeHolder:nth-child(2) {
+        color: black!important;
+    }
+
+    .placeHolder:nth-child(2) > div :first-child{
+        color: black !important;
+    }
+
+    .placeHolder:nth-child(2) > div :nth-child(2){
+        color: black !important;
+    }
+
+    .custom {
+      padding-left: 64px;
+      padding-right: 64px;
+    }
+
     .homePageSearch:nth-child(1) {
         color: #fff;
     }

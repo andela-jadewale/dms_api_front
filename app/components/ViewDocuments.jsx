@@ -93,6 +93,7 @@ module.exports = React.createClass({
     if(window.localStorage) {
       urlOthers = '/api/v1/documents/?role='+localStorage.getItem('role');
     }
+    console.log('in view docs', DataSource.getUserData());
     return {documents: [], open: false};
   },
   save: function() {

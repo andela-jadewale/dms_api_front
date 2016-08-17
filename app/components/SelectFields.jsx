@@ -17,7 +17,7 @@ module.exports = React.createClass({
   render: function () {
     return (
         <SelectField fullWidth={this.props.fullWidth}
-         floatingLabelText='Select Access' value={this.state.select} onChange={this.handleChange}>
+         floatingLabelText='Select Access' hintStyle={{color: 'black'}} floatingLabelFixed='true' autoWidth='true' value={this.state.select} onChange={this.handleChange}>
         {
           this.props.roles.map(function (users, index){
             return (

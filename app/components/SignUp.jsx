@@ -12,6 +12,7 @@ var SnackBar = require('./SnackBar.jsx');
 var UserData = {};
 var url = '/api/v1/roles/';
 var signUpUrl = '/api/v1/users/';
+var Link = require('react-router').Link
 
 function userName(e) {
   UserData.username = e.target.value;
@@ -63,7 +64,7 @@ module.exports = React.createClass({
           <div className='form-group'> <InputForm type='email' change={email} required='true' fullWidth='true' hintText='Email' float='Email'/> </div>
           <div className='form-group'> <InputForm type='password' change={password} required='true' fullWidth='true' hintText='Password' float='Password'/> </div>
           <div className='form-group'> <InputForm type='password' change={rePassword} required='true' fullWidth='true' hintText='Re enter Password' float='Re enter Password'/> </div>
-          <div className='form-group'> <SelectField getValue={access} fullWidth='true' roles={this.state.roles} /> </div>
+          <div className='custom'> <SelectField getValue={access} fullWidth='true' roles={this.state.roles} /> </div>
           <div className='clear'> </div>
           <div className='form-group'> <Buttons className='fullWidth' type='Submit' bg='#4285f4' width='true' label='Sign Up'> </Buttons> </div>
 
@@ -71,7 +72,7 @@ module.exports = React.createClass({
            <SnackBar open={this.state.errors} message={this.state.text}/>
         <div className='clear'> </div>
          <div className='form-group'>
-           <span className='black-color'> Already have an account ? <a href='#'> Login </a></span>
+           <span className='black-color'> Already have an account ? <Link to='/'>Log In</Link></span>
           </div>
         </form>
         </div>

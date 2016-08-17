@@ -6,6 +6,6 @@ var environment = function () {
   }
 
   return false;
-}
+};
 
 module.exports = environment;

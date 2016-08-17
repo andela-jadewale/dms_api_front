@@ -39,10 +39,14 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     DocStore.setSelf(this);
-    if(!EnvironmentDetect()) {
+   /* if(!EnvironmentDetect() || window.localStorage ){
+      DocStore.setTinyMce(tinyMCE);
+    } */
+
+    if(window.localStorage) {
       DocStore.setTinyMce(tinyMCE);
     }
-    DocAction.init();
+    DocAction.emitAction(null, 'Init');
     DocStore.setData(DocumentData);
 
     if ((this.props.owner) === false ) {

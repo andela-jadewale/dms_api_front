@@ -64,13 +64,15 @@ function Documents() {
       }
       else{
         if((data.content) && (data.title)) {
-          data.id = localStorage.getItem('id');
+          data.id = DataSource.getUserData()._id;
           UserHelper.sendRequest(docUrl, 'POST', data, saveDoc);
       }
       }
     }
     else {
       getSelf().setState({snackError: true});
+      documents.view = 'Error creating doc';
+      triggerListeners();
     }
   }
 
@@ -97,7 +99,6 @@ function Documents() {
 
   function confirmDelete(obj) {
     var id = obj.id.split(' ')[obj.id.split(' ').length - 1];
-    console.log('The id is ', id);
     obj.self.setState({delBox: false});
   }
 
@@ -109,7 +110,7 @@ function Documents() {
     (obj.doc || obj.document) ? getSelf().setState({snack: true})
       : getSelf().setState({snackError: true});
 
-    var userId = localStorage.getItem('id');
+    var userId = DataSource.getUserData()._id || localStorage.getItem('id');
 
     getDocView(docUser + userId+ '/documents/', 'GET', viewDoc);
   }
@@ -151,6 +152,8 @@ function Documents() {
 
     obj.data.setState({id: userId});
     obj.data.setState({open: true});
+    documents.view = 'search';
+    triggerListeners();
   }
 
   function init() {
@@ -180,9 +183,13 @@ function Documents() {
         search.push(key);
       }
     }
+    console.log('error');
     obj.data.setState({filter: AutoComplete.noFilter});
     obj.data.setState({show: true});
     obj.data.setState({dataSource: search});
+    documents.view = 'search not found';
+    console.log('no errors');
+    triggerListeners();
   }
 
   function add(obj) {

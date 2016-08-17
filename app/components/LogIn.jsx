@@ -10,7 +10,7 @@ var CircularProgress = require('material-ui/CircularProgress').default;
 var SnackBar = require('./SnackBar.jsx');
 var params = {};
 var url = '/api/v1/users/login';
-var Link = require('react-router').Link
+var Link = require('react-router').Link;
 
 function username(e) {
   params.username = e.target.value;
@@ -60,7 +60,7 @@ module.exports = React.createClass({
         <SnackBar open={this.state.open} message='Success'/>
         <SnackBar open={this.state.errors} message='Invalid Username or password'/>
         <div className='form-group'>
-           <span className='black-color'> Dont have an account ? <Link to='SignUp'>Sign Up</Link> </span>
+           <span className='black-color'> Dont have an account ? <Link to='signup'>Sign Up</Link> </span>
           </div>
 
         </form>
