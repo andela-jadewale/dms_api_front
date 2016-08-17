@@ -16,8 +16,15 @@
       user : config.dbUsername,
       pass : config.dbPassword
     };
+    var uri;
 
-    var uri = config.url + config.dbPort + '/' + config.dbName;
+    uri = config.url + config.dbPort + '/' + config.dbName;
+    if(process.env.MONGODB_URI) {
+      uri = process.env.MONGODB_URI;
+      options = {
+        server : { poolSize : 5, reconnectTries : 5}
+      };
+    }
     mongoose.connect(uri, options);
 
     // Add auto increment to keep ID unique
