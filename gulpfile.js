@@ -103,3 +103,7 @@ gulp.task('default', ['nodemon','watch','bundle','min','bower','live-server'], f
   })
 })
 
+gulp.task('production', ['build']);
+gulp.task('heroku:production', ['production']);
+gulp.task('build', ['bundle', 'min','bower']);
+
