@@ -31,9 +31,9 @@ var paths = {
 
 // minimise app.js
 gulp.task('min', function() {
-    return gulp.src('./.tmp/app.js')
+    return gulp.src('app/**/*.+(js|jsx)')
       .pipe(rename({suffix: '.min'}))
-      .pipe(uglify())
+      .pipe(concat('app/main.jsx'))
       .pipe(gulp.dest('./.tmp'));
 });
 
