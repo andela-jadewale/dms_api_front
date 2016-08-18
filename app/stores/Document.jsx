@@ -164,12 +164,12 @@ function Documents() {
     getSelf().setState({roles: data.role});
     if(getSelf().props.update) {
       var id = getSelf().props.id;
-      UserHelper.sendRequest(docUrl + '/' + id, 'GET', null, processDoc);
+      UserHelper.sendRequest(docUrl + id, 'GET', null, processDoc);
     }
   }
 
   function processDoc(obj) {
-
+    debugger;
     if(obj.data.ownerId === DataSource.getUserData()._id) {
       getSelf().setState({owner: true});
     }
