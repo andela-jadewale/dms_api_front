@@ -86,13 +86,22 @@ module.exports = React.createClass({
               <InputForm  value='No rights to edit document' float='Access' fullWidth='true' required='true'  />
               </div>
           }
+<<<<<<< 7dba3cd629b5d12670deb49c5fa2e626ca9e9c92
 
            <TinyMCE id='text' content={this.state.documentText}
             config={this.state.config}
             onChange={handleEditorChange}
             />
           </div>
+=======
+            </div>
+>>>>>>> fix tinymce not editing
       }
+          <TinyMCE id='text' content={this.state.documentText}
+            config={this.state.config}
+            onChange={handleEditorChange}
+          />
+
       </form>
       <div>
       <SnackBar open={this.state.snack} message='Document Saved Successfully'/>
