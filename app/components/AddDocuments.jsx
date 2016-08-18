@@ -49,8 +49,6 @@ module.exports = React.createClass({
     DocAction.emitAction(null, 'Init');
     DocStore.setData(DocumentData);
 
-    console.log(this.props.id, 'is what');
-
     if ((this.props.owner) === false ) {
       return {roles: [{title: 'test'}], open: false, title: '',
       documentText: '', owner: false,  access: null };

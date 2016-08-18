@@ -169,7 +169,13 @@ function Documents() {
   }
 
   function processDoc(obj) {
-    console.log('it was processed right')
+
+    if(obj.data.ownerId === DataSource.getUserData()._id) {
+      getSelf().setState({owner: true});
+    }
+    else{
+      getSelf().setState({owner: false});
+    }
     getSelf().setState({title: obj.data.title});
     getSelf().setState({documentText: obj.data.content});
     getSelf().setState({access: obj.data.access[0]});
