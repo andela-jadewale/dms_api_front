@@ -169,7 +169,6 @@ function Documents() {
   }
 
   function processDoc(obj) {
-    debugger;
     if(obj.data.ownerId === DataSource.getUserData()._id) {
       getSelf().setState({owner: true});
     }
