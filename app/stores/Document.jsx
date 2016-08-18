@@ -70,8 +70,14 @@ function Documents() {
       }
     }
     else {
-      getSelf().setState({snackError: true});
-      documents.view = 'Error creating doc';
+       if(getSelf().props.update) {
+         getSelf().setState({snack: true});
+         documents.view = 'doc updated';
+       }
+       else{
+        getSelf().setState({snackError: true});
+        documents.view = 'Error creating doc';
+       }
       triggerListeners();
     }
   }
