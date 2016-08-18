@@ -10,7 +10,7 @@
   ],
   "author": "Jolaade",
   "scripts": {
-    "start": "npm run seed && node server.js",
+    "start": "gulp production",
     "test:bend": "istanbul cover _mocha tests/server",
     "test:fend": "istanbul cover _mocha tests/client/.setup.js tests/client && jest --verbose",
     "test": "npm run test:fend && npm run test:bend",

@@ -105,5 +105,5 @@ gulp.task('serve', ['nodemon','watch','bundle','min','bower','live-server'], fun
 
 gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
-gulp.task('build', ['bundle', 'min','bower']);
+gulp.task('build', ['nodemon','bundle', 'min','bower']);
 
