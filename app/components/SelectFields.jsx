@@ -4,7 +4,9 @@ var MenuItem = require('material-ui/MenuItem').default;
 
 module.exports = React.createClass({
   getInitialState: function (e) {
+    console.log('in a state', this.props.value)
     if(this.props.value ) {
+      consoe.log(his.props.value, 'chosen')
       return {select: 1}
     }
 
@@ -17,7 +19,7 @@ module.exports = React.createClass({
   render: function () {
     return (
         <SelectField fullWidth={this.props.fullWidth}
-         floatingLabelText='Select Access' hintStyle={{color: 'black'}} floatingLabelFixed='true' autoWidth='true' value={this.state.select} onChange={this.handleChange}>
+         floatingLabelText='Select Access'  hintStyle={{color: 'black'}} floatingLabelFixed='true' autoWidth='true' value={this.state.select || this.props.value} onChange={this.handleChange}>
         {
           this.props.roles.map(function (users, index){
             return (

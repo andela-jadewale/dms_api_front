@@ -45,7 +45,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-        <div className='signin-header home'>
+        <div className='signin-header home home-image'>
         <div className='log-div'> </div>
         <form onSubmit={submit} className='form-horizontal'>
           <div className='form-group'> <InputForm type='text' change={username} required='true' fullWidth='true' hintText='Username' float='Username'/> </div>

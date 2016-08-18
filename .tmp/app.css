@@ -43,10 +43,13 @@ body{
       border: 1px solid rgba(128,128,128,0.1);
       border-radius: 5px;
       position: relative;
+      background-color: #fff;
     }
+
     .tab{
       background-color: #009688;
     }
+
     .form-container {
       max-width: 420px;
       margin: 10px auto;
@@ -120,7 +123,7 @@ body{
       float:left;
     }
     .home-image {
-      background-image: url('document.jpg');
+      background-image: url('index2.fw.png');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;

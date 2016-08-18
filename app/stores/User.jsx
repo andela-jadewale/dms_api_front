@@ -8,7 +8,8 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
   userData = {},
   Token = require('../services/Token.js'),
   DataSource = require('../services/DataSource.js'),
-  data = '';
+  data = '',
+  Errors = require('../services/Error.js');
 
 function User() {
 
@@ -53,14 +54,31 @@ function User() {
     }
   }
 
+  function clearSignUp() {
+    getSelf().setState({user: ''});
+    getSelf().setState({first: ''});
+    getSelf().setState({last: ''});
+    getSelf().setState({email: ''});
+    getSelf().setState({pass: ''});
+    getSelf().setState({repass: ''});
+  }
+
   function proccessSignUp(data) {
     if(data.message === 'user created') {
+      getSelf().setState({errors: false});
       getSelf().setState({open: true});
       user.view = 'user created';
+      clearSignUp();
     }
     else{
       getSelf().setState({errors: true});
-      getSelf().setState({text: data.text});
+      if(typeof data === 'string') {
+        getSelf().setState({texts: data});
+      }
+      else{
+        getSelf().setState({texts: 'Username or Email exists'});
+      }
+
       user.view = 'user not created';
     }
     triggerListeners();
@@ -117,7 +135,6 @@ function User() {
     else{
       getSelf().setState({load: false});
       getSelf().setState({errors: true});
-      getSelf().setState({text: 'Authentication Failed'});
       user.view = 'Authentication Failed';
     }
     triggerListeners();

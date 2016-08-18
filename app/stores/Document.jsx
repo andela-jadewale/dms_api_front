@@ -169,6 +169,7 @@ function Documents() {
   }
 
   function processDoc(obj) {
+    console.log('it was processed right')
     getSelf().setState({title: obj.data.title});
     getSelf().setState({documentText: obj.data.content});
     getSelf().setState({access: obj.data.access[0]});

@@ -1,4 +1,3 @@
-
 var React = require('react');
 var ReactDom = require('react-dom');
 var Container = require('./components/Container.jsx');
@@ -18,7 +17,6 @@ var Route = require('react-router').Route
 var Link = require('react-router').Link
 var browserHistory = require('react-router').browserHistory;
 var LandingPage = require('./components/LandingPage.jsx');
-
 var muiTheme = getMuiTheme({
   palette: {
     primary2Color: '#4285f4',

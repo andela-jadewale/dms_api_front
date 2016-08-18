@@ -49,6 +49,8 @@ module.exports = React.createClass({
     DocAction.emitAction(null, 'Init');
     DocStore.setData(DocumentData);
 
+    console.log(this.props.id, 'is what');
+
     if ((this.props.owner) === false ) {
       return {roles: [{title: 'test'}], open: false, title: '',
       documentText: '', owner: false,  access: null };
@@ -87,10 +89,19 @@ module.exports = React.createClass({
           <div>
           <InputForm change={titleText} value={this.state.title} float='Add Title' fullWidth='true' required='true' hint='Enter Title' />
           <div>
-            <SelectField getValue={accessRole} roles={this.state.roles} />
-          </div>
-          <InputForm float='Add Documents' value={this.state.documentText} change={changeDoc} fullWidth='true' required='true' hint='Enter Document Content then save' row='10' textArea='true' />
 
+          <InputForm change={titleText} value='' float='Access' fullWidth='true' required='true' hint='No Access to edit or delete Document' />
+          </div>
+
+          <TinyMCE id='text' content={this.state.documentText}
+            config={{
+              plugins: 'link image code textcolor advlist',
+              toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
+              advlist_number_styles: 'lower-alpha',
+              advlist_bullet_styles: 'square"',
+              readonly : 1
+            }}
+            />
           </div>
       }
       </form>

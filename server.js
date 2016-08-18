@@ -17,8 +17,6 @@ var config = require('./server/config'),
 
 app.set('superSecret', config.secretToken);
 app.set('express',express);
-
-//app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(express.static(__dirname + '/.tmp/' ));
 app.set('views', __dirname + '/app/views');

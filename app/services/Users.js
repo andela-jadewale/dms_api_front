@@ -1,16 +1,19 @@
 
   var User = require('./ParseUsers.js'),
-    Request = require('./xhrRequest.js');
+    Request = require('./xhrRequest.js'),
+    Errors = require('./Error.js');
 
   module.exports =  {
     logIn: function (url, type, params, cb) {
       'use strict';
-      User.logUserIn(params)? sendRequest(url, type, params, cb): cb(Errors());
+      User.logUserIn(params)? sendRequest(url, type, params, cb):
+       cb(Errors.getData());
     },
 
      signUp: function (url, type, params, cb) {
       'use strict';
-      User.signUp(params)? sendRequest(url, type, params, cb): cb(Errors());
+      User.signUp(params) ? sendRequest(url, type, params, cb):
+       cb(Errors.getData());
     },
 
     roles: function (url, type, params, cb) {
@@ -38,10 +41,6 @@
       sendRequest(url, type, params, cb);
     },
   };
-    function Errors() {
-      'use strict';
-      return 'Please All details are required';
-    }
 
     function sendRequest(url, type, params, cb) {
       'use strict';
