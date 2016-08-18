@@ -175,11 +175,17 @@ function Documents() {
   }
 
   function processDoc(obj) {
+    debugger;
     if(obj.data.ownerId === DataSource.getUserData()._id) {
       getSelf().setState({owner: true});
     }
     else{
-      getSelf().setState({owner: false});
+      if(obj.data.access.indexOf(DataSource.getUserData().role) !== -1) {
+        getSelf().setState({rights: true});
+      }
+      else{
+        getSelf().setState({owner: false});
+      }
     }
     getSelf().setState({title: obj.data.title});
     getSelf().setState({documentText: obj.data.content});

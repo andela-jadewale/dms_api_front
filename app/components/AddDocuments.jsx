@@ -55,7 +55,7 @@ module.exports = React.createClass({
     }
 
     return {roles: [{title: 'test'}], open: false, title: '', documentText: '',
-    owner: true, access : null, snack : false, snackError: false };
+    owner: false, access : null, snack : false, snackError: false };
   },
   render: function () {
     return (
@@ -65,12 +65,11 @@ module.exports = React.createClass({
         this.state.owner ?
           <div>
           <InputForm change={titleText} value={this.state.title} float='Add Title' fullWidth='true' required='true' hint='Enter Title' />
-
           {
             this.props.update ?
-          <SelectField value={this.state.access}  getValue={accessRole} roles={this.state.roles} />
-          :
-          <SelectField getValue={accessRole} roles={this.state.roles} />
+              <SelectField value={this.state.access}  getValue={accessRole} roles={this.state.roles} />
+            :
+              <SelectField getValue={accessRole} roles={this.state.roles} />
           }
           <TinyMCE id='text' content={this.state.documentText}
             config={{
@@ -85,21 +84,36 @@ module.exports = React.createClass({
           </div>
           :
           <div>
-          <InputForm change={titleText} value={this.state.title} float='Add Title' fullWidth='true' required='true' hint='Enter Title' />
-          <div>
-
-          <InputForm change={titleText} value='' float='Access' fullWidth='true' required='true' hint='No Access to edit or delete Document' />
-          </div>
-
-          <TinyMCE id='text' content={this.state.documentText}
-            config={{
-              plugins: 'link image code textcolor advlist',
-              toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
-              advlist_number_styles: 'lower-alpha',
-              advlist_bullet_styles: 'square"',
-              readonly : 1
-            }}
-            />
+          { this.state.rights ?
+              <div>
+              <InputForm  value={this.state.title} float='Add Title' fullWidth='true' required='true' hint='Enter Title' />
+              <InputForm change={titleText} value='No rights to set access or title , please edit document only.' float='Access' fullWidth='true' required='true'  />
+              <TinyMCE id='text' content={this.state.documentText}
+                config={{
+                  plugins: 'link image code textcolor advlist',
+                  toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
+                  advlist_number_styles: 'lower-alpha',
+                  advlist_bullet_styles: 'square"'
+                }}
+                onChange={handleEditorChange}
+              />
+              </div>
+            :
+              <div>
+              <InputForm  value={this.state.title} float='Add Title' fullWidth='true' required='true' hint='Enter Title' />
+              <InputForm  value='No rights to edit document' float='Access' fullWidth='true' required='true'  />
+              <TinyMCE id='text' content={this.state.documentText}
+                config={{
+                  plugins: 'link image code textcolor advlist',
+                  toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
+                  advlist_number_styles: 'lower-alpha',
+                  advlist_bullet_styles: 'square"',
+                  readonly : 1
+                }}
+                onChange={handleEditorChange}
+              />
+              </div>
+          }
           </div>
       }
       </form>
