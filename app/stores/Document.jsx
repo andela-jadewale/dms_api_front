@@ -14,7 +14,20 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
 function Documents() {
   var documents = {},
       listeners = [],
-      AutoComplete = {};
+      AutoComplete = {},
+      ownerConfig = {
+        plugins: 'link image code textcolor advlist',
+        toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
+        advlist_number_styles: 'lower-alpha',
+        advlist_bullet_styles: 'square"'
+      },
+      notConfig = {
+        plugins: 'link image code textcolor advlist',
+        toolbar: 'forecolor backcolor | undo redo | bold italic | alignleft aligncenter alignright | code',
+        advlist_number_styles: 'lower-alpha',
+        advlist_bullet_styles: 'square"',
+        readonly: 1
+      };
 
   function getSelf() {
     return self;
@@ -175,16 +188,18 @@ function Documents() {
   }
 
   function processDoc(obj) {
-    debugger;
     if(obj.data.ownerId === DataSource.getUserData()._id) {
       getSelf().setState({owner: true});
+      getSelf().setState({config: ownerConfig})
     }
     else{
       if(obj.data.access.indexOf(DataSource.getUserData().role) !== -1) {
         getSelf().setState({rights: true});
+        getSelf().setState({config: ownerConfig})
       }
       else{
         getSelf().setState({owner: false});
+        getSelf().setState({config: notConfig})
       }
     }
     getSelf().setState({title: obj.data.title});
@@ -201,12 +216,10 @@ function Documents() {
         search.push(key);
       }
     }
-    console.log('error');
     obj.data.setState({filter: AutoComplete.noFilter});
     obj.data.setState({show: true});
     obj.data.setState({dataSource: search});
     documents.view = 'search not found';
-    console.log('no errors');
     triggerListeners();
   }
 
