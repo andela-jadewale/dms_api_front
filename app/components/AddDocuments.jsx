@@ -88,28 +88,12 @@ module.exports = React.createClass({
               <InputForm  value='No rights to edit document' float='Access' fullWidth='true' required='true'  />
               </div>
           }
-<<<<<<< cae1f49bed750b564216b03c8b0a308eb4ab625b
-<<<<<<< 7dba3cd629b5d12670deb49c5fa2e626ca9e9c92
-=======
             </div>
->>>>>>> fix tinymce not editing
 
       }
           <TinyMCE id='text' content={this.state.documentText}
             config={this.state.config}
             onChange={handleEditorChange}
-<<<<<<< cae1f49bed750b564216b03c8b0a308eb4ab625b
-            />
-          </div>
-=======
-            </div>
->>>>>>> fix tinymce not editing
-      }
-          <TinyMCE id='text' content={this.state.documentText}
-            config={this.state.config}
-            onChange={handleEditorChange}
-=======
->>>>>>> fix tinymce not editing
           />
 
       </form>
