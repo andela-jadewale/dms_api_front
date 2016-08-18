@@ -136,7 +136,7 @@ module.exports = React.createClass({
       </div>
 
       <div>
-        <Dialog scroll='true' display={<AddDocuments/>}
+        <Dialog scroll='true' display={<AddDocuments owner='owner'/>}
            save={this.save}
            cancel={this.handleClose} open={this.state.open}/>
        </div>

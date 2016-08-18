@@ -85,7 +85,6 @@ function getId() {
 }
 
 function setId() {
-  console.log('id is cleared');
   id = 0;
 }
 
@@ -232,11 +231,6 @@ module.exports = React.createClass({
     return 'modified '+ day + ' ' + monthNames[monthIndex] + ', ' + year;
   },
   delete: function (e) {
-    console.log(e.target.className, 'name');
-    console.log(e.target);
-    console.log(this.parent().attr('id'), 'test');
-    console.log(e.target.id);
-    alert('delete');
     e.stopPropagation();
   },
   render: function () {

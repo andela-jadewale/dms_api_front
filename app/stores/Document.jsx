@@ -118,7 +118,19 @@ function Documents() {
 
   function confirmDelete(obj) {
     var id = obj.id.split(' ')[obj.id.split(' ').length - 1];
+    sendDeleteToServer(id);
     obj.self.setState({delBox: false});
+
+  }
+
+  function sendDeleteToServer(id) {
+    var userId = DataSource.getUserData()._id;
+    UserHelper.sendRequest(docUrl + id, 'DELETE', {'id': userId}, processDelete);
+  }
+
+  function processDelete(obj) {
+    var userId = DataSource.getUserData()._id;
+    getDocView(docUser + userId+ '/documents/', 'GET', viewDoc);
   }
 
   function cancelDelete(obj) {
@@ -244,7 +256,9 @@ function Documents() {
   function deleteDocument(obj) {
      getDocComp().setState({snack: false});
      getDocComp().setState({delBox: true});
-     getDocComp().setState({deleteTitle: 'Are you sure you want to delete '+ obj});
+     getDocComp().setState({deleteTitle: 'Save changes to delete document '+ obj});
+     documents.view = 'delete document';
+     triggerListeners();
   }
 
   function noAccess(obj) {
