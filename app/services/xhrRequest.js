@@ -27,7 +27,7 @@
     request
    .get(HostAddress + req.url)
    .query(req.query)
-   .set('x-access-token', Token.getToken())
+   .set('x-access-token', Token.getToken() || localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
        req.cb(err);
@@ -41,7 +41,7 @@
     request
    .post(HostAddress + req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken())
+   .set('x-access-token', Token.getToken() || localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
        req.cb(err);
@@ -55,7 +55,7 @@
     request
    .del(HostAddress + req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken())
+   .set('x-access-token', Token.getToken() || localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
        req.cb(err);
@@ -69,7 +69,7 @@
     request
    .put(HostAddress + req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken())
+   .set('x-access-token', Token.getToken() || localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
        req.cb(err);

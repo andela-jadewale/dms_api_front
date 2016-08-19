@@ -24,6 +24,13 @@ function submit(e) {
 }
 
 module.exports = React.createClass({
+
+  componentDidMount: function() {
+    console.log('test');
+  },
+  componentWillUnmount: function() {
+    console.log('tester');
+  },
   getInitialState: function () {
     UserStore.setSelf(this);
     UserStore.getRoles();

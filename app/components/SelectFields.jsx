@@ -7,7 +7,6 @@ module.exports = React.createClass({
     if(this.props.value ) {
       return {select: 1}
     }
-    console.log(this.props.value, 'the value')
 
     return {select:null};
   },

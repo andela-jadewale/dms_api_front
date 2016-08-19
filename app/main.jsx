@@ -1,12 +1,13 @@
 var React = require('react');
 var ReactDom = require('react-dom');
+var Render = require('react-dom').render;
 var Container = require('./components/Container.jsx');
 var documentStore = require('./stores/Document.jsx');
 var docAction = require('./actions/DocManagementActionCreator.jsx');
 var userStore = require('./stores/User.jsx');
 var roleStore = require('./stores/Role.jsx')
 var Login = require('./components/LogIn.jsx');
-var Documents = require('./components/HomePage.jsx');
+var Documents = require('./components/Documents.jsx');
 var ShowDocument = require('./components/ShowDocument.jsx');
 var MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default;
 var getMuiTheme = require('material-ui/styles/getMuiTheme').default;
@@ -27,35 +28,21 @@ var muiTheme = getMuiTheme({
 
 userStore.onChange(function (user) {
   if(user.view === 'documents') {
-    docAction.getDocument(user.data._id);
     browserHistory.push('/documents');
   }
   if(user.view === 'signOut') {
-    signOut();
-  }
-});
-
-documentStore.onChange(function (doc) {
-  if(doc.view === 'documents') {
-    renderDocuments(doc.data);
+    browserHistory.push('/signout');
+    localStorage.clear();
   }
 });
 
 roleStore.onChange(function (role) {
 });
 
-
-function renderDocuments(items) {
-  ReactDom.render(<MuiThemeProvider muiTheme={muiTheme} ><Documents  data={items} /></MuiThemeProvider>, app)
-}
-
-function signOut(items) {
-  ReactDom.render(<MuiThemeProvider muiTheme={muiTheme} ><LandingPage/></MuiThemeProvider>, app)
-}
-
-ReactDom.render(<Router history={browserHistory}>
+Render(<Router history={browserHistory}>
                   <Route path="/" component={LandingPage}/>
                   <Route path="signup" component={Container}/>
+                  <Route path="documents" component={Documents}/>
                   <Route path="signout" component={LandingPage}/>
                  </Router>, app)
 

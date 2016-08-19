@@ -9,6 +9,7 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
   docUrl = '/api/v1/documents/',
   docUser = '/api/v1/users/',
   data = '',
+  browserHistory = require('react-router').browserHistory,
   AddDocComponent = '';
 
 function Documents() {
@@ -147,9 +148,12 @@ function Documents() {
   }
 
   function getDocument(obj) {
-
-    obj.url ? getDocView(obj.url, 'GET', viewDoc) :
-      getDocView(docUser + obj+ '/documents/', 'GET', viewDoc)
+    try{
+      obj.url ? getDocView(obj.url, 'GET', viewDoc) :
+        getDocView(docUser + obj+ '/documents/', 'GET', viewDoc)
+      }catch(e){
+        browserHistory.push('/');
+      }
 
   }
 
