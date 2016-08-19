@@ -11,6 +11,8 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var rename = require('gulp-rename');
 var nodemon = require('gulp-nodemon');
+var imagemin = require('gulp-imagemin');
+var cache = require('gulp-cache');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
 var paths = {

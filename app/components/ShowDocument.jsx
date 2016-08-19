@@ -4,10 +4,10 @@ var AddDocuments = require('./AddDocuments.jsx');
 
 module.exports = React.createClass({
   save: function () {
-    alert('save');
+
   },
   cancel: function () {
-    alert('cancel');
+
   },
   getInitialState: function () {
     return {open: true}
