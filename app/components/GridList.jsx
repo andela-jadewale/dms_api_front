@@ -76,11 +76,10 @@ function getStyle (e) {
 }
 
 function del(e) {
-  console.log(e, 'should be Id to delete');
+  return;
 }
 
 function getId() {
-  console.log(id);
   return id++;
 }
 
@@ -177,45 +176,6 @@ module.exports = React.createClass({
 
     if(storageId() == e.target.className ) {
       docView(storageId(), e.target.id);
-    }
-    return;
-    /*
-      return;
-      alert('delete');
-      console.log(e.target.title);
-      this.setState({deleteTitle: 'Are you sure you want to delete '+e.target.title});
-      this.setState({delBox: true});
-      return;
-    }
-    */
-    if(e.target.className === 'paperDiv') {
-       if(localStorage.getItem('id') == this.props.data[e.target.id].ownerId) {
-        alert('owner Id');
-          this.setState({id: this.props.data[e.target.id]._id});
-          this.setState({open: true});
-          this.setState({owner: true});
-       }
-       else{
-        console.log('because '+ localStorage.getItem('ownerId') +' != ' + this.props.data[e.target.id].ownerId );
-        alert('not owner');
-            this.setState({id: this.props.data[e.target.id]._id});
-            this.setState({open: true});
-       }
-       alert('no condition I guess');
-       return;
-    }
-
-    alert('focus one');
-    if(localStorage.getItem('id') == e.target.className) {
-      alert('focus two');
-      this.setState({id: e.target.id});
-      this.setState({open: true});
-      this.setState({owner: true});
-    }
-    else{
-      alert('focus three');
-      this.setState({id: e.target.id});
-      this.setState({open: true});
     }
   },
   handleClose: function (e) {

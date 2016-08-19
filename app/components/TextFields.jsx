@@ -16,13 +16,3 @@ module.exports = React.createClass({
     )
   }
 })
-
-
-
-
-/*
-
- iconStyle={{ fill: '#FF4081'}}
-        floatingLabelStyle={{color: '#fff'}}
-        underlineFocusStyle={{borderBottom: 'solid 2px', borderColor: '#4285f4'}}
- */

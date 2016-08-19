@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDom = require('react-dom');
 var Container = require('./components/Container.jsx');
-var docStore = require('./stores/SignUp.jsx');
 var documentStore = require('./stores/Document.jsx');
 var docAction = require('./actions/DocManagementActionCreator.jsx');
 var userStore = require('./stores/User.jsx');
@@ -29,6 +28,10 @@ var muiTheme = getMuiTheme({
 userStore.onChange(function (user) {
   if(user.view === 'documents') {
     docAction.getDocument(user.data._id);
+    browserHistory.push('/documents');
+  }
+  if(user.view === 'signOut') {
+    signOut();
   }
 });
 
@@ -46,8 +49,13 @@ function renderDocuments(items) {
   ReactDom.render(<MuiThemeProvider muiTheme={muiTheme} ><Documents  data={items} /></MuiThemeProvider>, app)
 }
 
+function signOut(items) {
+  ReactDom.render(<MuiThemeProvider muiTheme={muiTheme} ><LandingPage/></MuiThemeProvider>, app)
+}
+
 ReactDom.render(<Router history={browserHistory}>
                   <Route path="/" component={LandingPage}/>
                   <Route path="signup" component={Container}/>
+                  <Route path="signout" component={LandingPage}/>
                  </Router>, app)
 

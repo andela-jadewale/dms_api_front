@@ -9,7 +9,8 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
   Token = require('../services/Token.js'),
   DataSource = require('../services/DataSource.js'),
   data = '',
-  Errors = require('../services/Error.js');
+  Errors = require('../services/Error.js'),
+  browserHistory = require('react-router').browserHistory;
 
 function User() {
 
@@ -140,6 +141,12 @@ function User() {
     triggerListeners();
   }
 
+  function logout(obj) {
+    browserHistory.push('/signout');
+    user.view = 'signOut';
+    triggerListeners();
+  }
+
   dispatcher.register(function (e) {
     var split = e.type.split(':');
     if(split[0] === 'docMan') {
@@ -151,6 +158,9 @@ function User() {
         case 'Edit': edit(e.payload);
         break;
         case 'ConfirmEdit': confirmEdit(e.payload);
+        break;
+        case 'LogOut': logout(e.payload);
+        break;
       }
     }
   })

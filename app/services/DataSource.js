@@ -1,6 +1,7 @@
 var dataSource = {};
 var content = {};
 var userData = {};
+var documentData = {};
 
 var getSource = function (source) {
   'use strict';
@@ -32,11 +33,25 @@ var getUserData = function () {
   return userData;
 };
 
+var setDocData = function (obj) {
+  'use strict';
+
+  documentData.data = obj;
+};
+
+var getDocData = function () {
+  'use strict';
+
+  return documentData.data;
+};
+
 module.exports = {
   getSource: getSource,
   getContent: getContent,
   setContent: setContent,
   setUserData: setUserData,
-  getUserData: getUserData
+  getUserData: getUserData,
+  setDocData: setDocData,
+  getDocData: getDocData
 };
 
