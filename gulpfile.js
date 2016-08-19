@@ -49,6 +49,7 @@ gulp.task('css', function () {
 
 gulp.task('img', function () {
   gulp.src(['app/images/*.+(jpg|jpeg|png)'])
+  .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
   .pipe(gulp.dest('./.tmp'))
 })
 
