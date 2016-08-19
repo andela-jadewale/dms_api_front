@@ -37,7 +37,6 @@ module.exports = React.createClass({
     UserHelper.updateUser(url + id, 'PUT', Names, this.listener);
   },
   listener: function (e) {
-    alert(e);
   },
   render: function () {
     return (
