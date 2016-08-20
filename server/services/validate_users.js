@@ -22,7 +22,6 @@ module.exports = (function () {
       valid = false;
     }
 
-    console.log(valid, 'data creation');
     return valid;
   };
 

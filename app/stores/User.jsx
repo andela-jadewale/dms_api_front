@@ -85,7 +85,19 @@ function User() {
     triggerListeners();
   }
 
+  function resetUserData() {
+    var names = {'last': localStorage.getItem('last'),
+      'first': localStorage.getItem('first')}
+    userData.name= names;
+    userData.email = localStorage.getItem('email');
+    userData.role = localStorage.getItem('role');
+    userData.username = localStorage.getItem('username');
+  }
+
   function edit(obj) {
+    if(!userData.username) {
+      resetUserData();
+    }
     obj.self.setState({data: userData});
     obj.self.setState({open: true});
     user.view = 'Edit'
@@ -111,11 +123,22 @@ function User() {
   }
 
   function confirmEdit(obj) {
-    UserHelper.sendRequest(signUpUrl + userData.id, 'PUT', getData(), processEdit);
+    UserHelper.sendRequest(signUpUrl + userData.username, 'PUT', getData(), processEdit);
   }
 
   function processEdit(res) {
-    user.view = 'Edit Confirmed';
+    if(res.data) {
+       user.view = 'Edit Confirmed';
+       DataSource.setUserData(res.data);
+       userData = res.data;
+       Storage.setLogin(setUserData(Token.getToken(),
+        res.data._id, res.data.username,
+        res.data.role, res.data.email, res.data.name));
+    }
+    else{
+      user.view = 'Error';
+    }
+
     triggerListeners();
   }
 

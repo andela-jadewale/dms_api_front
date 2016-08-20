@@ -3,6 +3,7 @@ var tapPlugin = require('react-tap-event-plugin');
 var MuiThemeProvider = require('material-ui/styles/MuiThemeProvider').default;
 var getMuiTheme = require('material-ui/styles/getMuiTheme').default;
 var Login = require('./LogIn.jsx');
+var browserHistory = require('react-router').browserHistory;
 tapPlugin();
 var muiTheme = getMuiTheme({
   palette: {
@@ -15,6 +16,12 @@ var muiTheme = getMuiTheme({
 
 
 module.exports = React.createClass({
+  getInitialState: function () {
+    if(localStorage.getItem('username')){
+      browserHistory.push('/documents');
+    }
+    return {};
+  },
   render: function () {
     return (
         <MuiThemeProvider muiTheme={muiTheme}>

@@ -72,7 +72,7 @@
    .set('x-access-token', Token.getToken() || localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
-       req.cb(err);
+       req.cb(res);
      } else {
        req.cb(res.body);
      }
