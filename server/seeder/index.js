@@ -17,7 +17,7 @@
       pass : ''
   };
 
-  var uri = 'mongodb://localhost:27017/DocumentManagementSystem';
+  var uri = 'mongodb://localhost:27017/DocumentManagement';
   if(process.env.MONGODB_URI) {
       uri = process.env.MONGODB_URI;
       options = {
