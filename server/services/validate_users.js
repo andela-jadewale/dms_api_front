@@ -17,8 +17,8 @@ module.exports = (function () {
       role = req.body.role;
 
     if((!isEmail(email)) || (!validData(lastName)) ||
-      (!validData(firstName)) || (!validData(password)) ||
-      (!validData(username)) || (!validData(role)) )  {
+      (!validData(firstName)) || (!validate(password)) ||
+      (!validate(username)) || (!validData(role)) )  {
       valid = false;
     }
 
@@ -35,7 +35,7 @@ module.exports = (function () {
       username = req.body.username,
       password = req.body.password;
 
-    if((!validData(username)) || (!validData(password))){
+    if((!validate(username)) || (!validate(password))){
       valid = false;
     }
 
@@ -57,13 +57,13 @@ module.exports = (function () {
       email = req.body.email,
       role = req.body.role;
 
-    if(!validData(username)){
+    if(!valid(username)){
       valid = false;
     }
-    if((newusername) && (!validData(username)) ){
+    if((newusername) && (!validate(username)) ){
       valid = false;
     }
-    if((password) && (!validData(password)) ){
+    if((password) && (!validate(password)) ){
       valid = false;
     }
     if((lastname) && (!validData(lastname)) ){
@@ -155,6 +155,10 @@ module.exports = (function () {
    */
   function validData(data){
     return (data)? (/([\d+\W+])+/gi.test(data)) ? false: true : false;
+  }
+
+  function validate(data){
+    return data ? true: false;
   }
 
   /*

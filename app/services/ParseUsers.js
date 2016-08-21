@@ -16,7 +16,7 @@ module.exports =  {
   signUp : function (params) {
     var valid = true;
 
-    if(!validData(params.username)) {
+    if(!validate(params.username)) {
       Errors.setData('Username cannot contain non words or numbers');
       valid = false;
     }
@@ -60,5 +60,9 @@ function validData(data){
 
 function validEmail(data) {
   return true;
+}
+
+function validate(data){
+  return data ? true: false;
 }
 

@@ -238,25 +238,6 @@ describe('users', function() {
     });
   });
 
-  it('should fail because password is numbers /users/:id/ PUT', function(done) {
-      chai.request(server)
-      .post('/api/v1/users/login/')
-      .send({'username':'Best', 'password':'Test'})
-      .end(function(err, res){
-      chai.request(server)
-      .put('/api/v1/users/'+res.body.data.username+'/?token='+res.body.token+
-        '&password='+'849493939')
-      .end(function(err, res) {
-        res.should.have.status(409);
-        res.should.be.json;
-        res.body.should.be.a('object');
-        res.body.should.have.property('error');
-        res.body.error.should.equal('check manual for required params');
-        done();
-      });
-    });
-  });
-
   it('should fail because name is numbers /users/:id/ PUT', function(done) {
       chai.request(server)
       .post('/api/v1/users/login/')

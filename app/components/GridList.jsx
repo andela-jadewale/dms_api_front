@@ -199,7 +199,7 @@ module.exports = React.createClass({
       <GridList cols='3' id={setId()}  cellHeight={200}
       style={getStyle(this.props.data.length)}>
       {
-
+      this.props.data.length ?
         this.props.data.map(function (object) {
           return (
             <div className='grid' style={sty}>
@@ -214,6 +214,8 @@ module.exports = React.createClass({
             </div>
            )
         })
+        :
+        <div className='empty-data blink'> You have no documents please select access to view other documents </div>
       }
        <SnackBar open={this.state.snack} message='You have no rights to delete this document'/>
       <Dialog save={this.yes}
