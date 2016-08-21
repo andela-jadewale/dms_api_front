@@ -26,22 +26,10 @@ function submit (e) {
   UserAction.emitAction(params, 'LogIn');
 }
 
-function logIn(e) {
-  action.logIn();
-}
-
-function signUp(e) {
-  //action.signUpView('SignUpView');
-}
-
 module.exports = React.createClass({
   getInitialState : function () {
     UserStore.setSelf(this);
     return {load: false, open: false, errors: false}
-  },
-  errors: function () {
-    this.setState({load: false});
-    this.setState({errors:true});
   },
   render: function () {
     return (

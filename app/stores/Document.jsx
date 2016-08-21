@@ -98,7 +98,6 @@ function Documents() {
 
   function setTinyMce(obj) {
     TinyMCE = obj;
-    console.log('set', TinyMCE);
   }
 
   function setData(obj) {
@@ -218,10 +217,12 @@ function Documents() {
         getSelf().setState({config: notConfig})
       }
     }
+    documents.view = 'Add docs';
     getSelf().setState({title: obj.data.title});
     getSelf().setState({documentText: obj.data.content});
     getSelf().setState({access: obj.data.access[0]});
     tinyMce().get('text').setContent(obj.data.content);
+    triggerListeners();
   }
 
   function notInDataSource(obj) {
@@ -255,9 +256,12 @@ function Documents() {
       search.push(key);
     }
      obj.setState({dataSource: search});
+     documents.view = 'search';
+     triggerListeners();
   }
 
   function deleteDocument(obj) {
+    console.log(obj, 'is here');
      getDocComp().setState({snack: false});
      getDocComp().setState({delBox: true});
      getDocComp().setState({deleteTitle: 'Save changes to delete document '+ obj});
@@ -312,8 +316,6 @@ function Documents() {
       break;
       case 'init': init();
       break;
-      case 'view': UserHelper.signUp(signUpUrl, 'POST', obj.data, proccessSignUp);
-      break;
       case 'confirm': confirmDelete(obj.data);
       break;
     }
@@ -329,13 +331,9 @@ function Documents() {
         break;
         case 'Get': sendRequest({'data': e.payload, 'type': 'get'});
         break;
-        case 'View': sendRequest({'data': e.payload, 'type': 'view'});
-        break;
         case 'Show': sendRequest({'data': e.payload, 'type': 'show'});
         break;
         case 'Hide': sendRequest({'data': e.payload, 'type': 'hide'});
-        break;
-        case 'Update': sendRequest({'data': e.payload, 'type': 'view'});
         break;
         case 'Delete': sendRequest({'data': e.payload, 'type': 'delete'});
         break;

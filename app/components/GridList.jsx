@@ -115,10 +115,10 @@ function docDelete(e) {
   var ownerId = getOwnerId(e.target.title);
 
   if(isAuthorized(ownerId)) {
-    DocAction.deleteDocuments(e.target.title);
+    DocAction.emitAction(e.target.title, 'Delete');
   }
   else {
-    DocAction.deleteError(e.target.title);
+    DocAction.emitAction(e.target.title, 'DeleteError');
   }
 }
 
@@ -132,10 +132,10 @@ function getIdFromProps(data, id, flag) {
 
 function docView(id, doc) {
   if(id == storageId()) {
-    DocAction.showEditDocuments(doc);
+    DocAction.emitAction(doc, 'Show');
   }
   else {
-    DocAction.showUnEditDocuments(doc);
+    DocAction.emitAction(doc, 'Hide');
   }
 }
 
@@ -147,20 +147,19 @@ module.exports = React.createClass({
     delBox : false, snack: false}
   },
   save: function () {
-    DocAction.save(this);
+    DocAction.emitAction(this, 'Save');
   },
   cancel: function () {
-    DocAction.cancel(this);
+    DocAction.emitAction(this, 'Cancel');
   },
   yes: function () {
-    DocAction.confirmDelete({'self': this, 'id': this.state.deleteTitle});
+    DocAction.emitAction({'self': this, 'id': this.state.deleteTitle}, 'Confirm');
   },
   no: function () {
-    DocAction.cancelDelete(this);
+    DocAction.emitAction(this, 'CancelDelete');
   },
   handleOpen: function (e) {
     e.stopPropagation();
-
     if(!e.target.id) {
       return;
     }

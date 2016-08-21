@@ -26,7 +26,7 @@ module.exports = React.createClass({
     });
   },
   getInitialState: function () {
-    DocAction.getDocument(DataSource.getUserData()._id || localStorage.getItem('id'));
+    DocAction.emitAction(DataSource.getUserData()._id || localStorage.getItem('id'),'Get');
     return {data: []};
   },
   render: function () {

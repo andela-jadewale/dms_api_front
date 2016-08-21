@@ -31,18 +31,10 @@ module.exports = React.createClass({
    Names.lastName = e.target.value;
    this.setState({lastName: Names.lastName})
     },
-  submit: function (e) {
-    var id = localStorage.getItem('username');
-    e.preventDefault();
-    UserHelper.updateUser(url + id, 'PUT', Names, this.listener);
-  },
-  listener: function (e) {
-  },
-  render: function () {
+      render: function () {
     return (
       <div>
-      <form onSubmit={this.submit} >
-
+      <form>
           <div className='form-group'> <InputForm type='text' value={this.state.lastName}  change={this.lastName}   fullWidth='true' hint={this.state.lastName} float='Last Name'/> </div>
           <div className='form-group'> <InputForm type='text' value={this.state.firstName}  change={this.firstName}  fullWidth='true' hint={this.state.firstName} float='First Name'/> </div>
           <div className='form-group'> <InputForm type='email' value={this.state.email} disable='true' required='true' fullWidth='true' hintText='Email' float='Email'/> </div>

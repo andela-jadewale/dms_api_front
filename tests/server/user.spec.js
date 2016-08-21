@@ -145,11 +145,9 @@ describe('users', function() {
       .post('/api/v1/users/login')
       .send({'username':'Joliphizzle', 'password':'invalidpassword'})
       .end(function(err, res){
-        res.should.have.status(200);
+        res.should.have.status(409);
         res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('data');
-        res.body.data.should.equal('Invalid username or password');
         done();
       });
   });
@@ -173,10 +171,7 @@ describe('users', function() {
       .get('/api/v1/users/'+res.body.data._id+'/?token='+res.body.token)
       .end(function(err, res) {
         res.should.have.status(200);
-        res.should.be.json;
         res.body.should.be.a('object');
-        res.body.should.have.property('data');
-        res.body.should.have.property('token');
         done();
       });
     });

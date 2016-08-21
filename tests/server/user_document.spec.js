@@ -504,23 +504,6 @@ describe('documents', function() {
     });
   });
 
-  it('returns documents created in 24 hours /documents/ GET', function (done) {
-    chai.request(server)
-    .post('/api/v1/users/login')
-    .send({'username':'Tope', 'password':'Tope'})
-    .end(function(err, res) {
-      chai.request(server)
-      .get('/api/v1/documents/?token=' + res.body.token +
-        '&date=' + new Date() + '&limit=10')
-      .end(function(err, res) {
-        res.should.have.status(200);
-        res.should.be.json;
-        expect(res.body.data.length).to.equal(10);
-        done();
-      });
-    });
-  });
-
   it('returns documents created on a  date skipping 10 /documents/ GET',
     function (done) {
       chai.request(server)
@@ -529,7 +512,8 @@ describe('documents', function() {
       .end(function(err, res) {
       chai.request(server)
       .get('/api/v1/documents/?token=' + res.body.token +
-        '&date=' + new Date('2016-06-30T23:00:00') + '&skip=10&limit=10')
+        '&newDate=' + new Date('2016-08-22T00:00:00') +'&date=' + new Date('2016-08-21T00:00:00') +
+        '&skip=10&limit=10')
       .end(function(err, res) {
         res.should.have.status(200);
         expect(res.body.data.length).to.equal(3);
@@ -547,7 +531,8 @@ describe('documents', function() {
       .end(function(err, res) {
       chai.request(server)
       .get('/api/v1/documents/?token=' + res.body.token +
-        '&skip=5&date='+ new Date('2016-06-30T23:00:00'))
+        '&skip=5&newDate='+new Date('2016-08-21T23:00:00')+
+        '&date='+ new Date('2016-08-21T00:00:00'))
       .end(function(err, res) {
         res.should.have.status(200);
         res.should.be.json;

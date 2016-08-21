@@ -15,60 +15,34 @@
       User.signUp(params) ? sendRequest(url, type, params, cb):
        cb(Errors.getData());
     },
-
-    roles: function (url, type, params, cb) {
-      'use strict';
-      sendRequest(url, type, params, cb);
-    },
-
-    updateUser: function (url, type, params, cb) {
-      'use strict';
-      sendRequest(url, type, params, cb);
-    },
-
-    createDoc: function (url, type, params, cb) {
-      'use strict';
-      sendRequest(url, type, params, cb);
-    },
-
-    getDoc: function (url, type, params, cb) {
-      'use strict';
-      sendRequest(url, type, params, cb);
-    },
-
     sendRequest: function (url, type, params, cb) {
       'use strict';
       sendRequest(url, type, params, cb);
     },
   };
 
-    function sendRequest(url, type, params, cb) {
-      'use strict';
-      Request(buildRequest(url, type, params, cb));
-    }
+  function sendRequest(url, type, params, cb) {
+    'use strict';
+    Request(buildRequest(url, type, params, cb));
+  }
 
-    function request(req) {
-      'use strict';
-      Request(req);
-    }
-
-    function buildRequest(url, type, params, cb) {
-      'use strict';
-      if(url.indexOf('?') !== -1) {
-        return {
-          'url': url.split('?')[0],
-          'type': type,
-          'query': url.split('?')[1],
-          'cb': cb
-        };
-      }
+  function buildRequest(url, type, params, cb) {
+    'use strict';
+    if(url.indexOf('?') !== -1) {
       return {
-        'url': url,
+        'url': url.split('?')[0],
         'type': type,
-        'body': params,
+        'query': url.split('?')[1],
         'cb': cb
       };
     }
+    return {
+      'url': url,
+      'type': type,
+      'body': params,
+      'cb': cb
+    };
+  }
 
 
 

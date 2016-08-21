@@ -7,6 +7,7 @@ module.exports =  {
     var valid = true;
 
     if((!params.username) || ((!params.password))) {
+      Errors.setData('Invalid username or password');
       valid = false;
     }
 
@@ -15,7 +16,6 @@ module.exports =  {
 
   signUp : function (params) {
     var valid = true;
-
     if(!validate(params.username)) {
       Errors.setData('Username cannot contain non words or numbers');
       valid = false;

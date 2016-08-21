@@ -39,10 +39,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     DocStore.setSelf(this);
-
-    if(window.localStorage) {
-      DocStore.setTinyMce(tinyMCE);
-    }
+    DocStore.setTinyMce(tinyMCE);
     DocAction.emitAction(null, 'Init');
     DocStore.setData(DocumentData);
 
@@ -51,7 +48,6 @@ module.exports = React.createClass({
       documentText: '', owner: false,  access: null ,
       rights: false, snack : false, snackError: false,};
     }
-
     if((this.props.owner) === 'owner') {
       return {roles: [{title: 'test'}], open: false, title: '', documentText: '',
      access : null, owner: true, snack : false, snackError: false, rights: false };

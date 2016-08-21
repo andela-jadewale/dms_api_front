@@ -18,16 +18,16 @@ module.exports = React.createClass({
     return {dataSource: [], id: '', open: false, show: false, filter: AutoComplete.caseInsensitiveFilter }
   },
   save: function () {
-    DocAction.save(this);
+    DocAction.emitAction(this, 'Save');
   },
   cancel: function () {
-    DocAction.cancel(this);
+    DocAction.emitAction(this, 'Cancel');
   },
   search: function () {
-    DocAction.search(this);
+    DocAction.emitAction(this, 'Search');
   },
   find: function (value) {
-    DocAction.find({'value': value, 'data': this});
+    DocAction.emitAction({'value': value, 'data': this}, 'Find');
   },
   render: function () {
     return (

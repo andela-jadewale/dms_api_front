@@ -52,7 +52,7 @@ function docAccess(value) {
 
   if(value === 0) {
     var userId = localStorage.getItem('id');
-    DocAction.getDocument(buildUrl(userId));
+    DocAction.emitAction(buildUrl(userId), 'Get');
     return;
   }
 
@@ -62,7 +62,7 @@ function docAccess(value) {
 
 function accessByRole(value) {
   if(value === 1) {
-    DocAction.getDocument({'id': null, 'url': buildUrl(urlOthers)});
+    DocAction.emitAction({'id': null, 'url': buildUrl(urlOthers)}, 'Get');
     return;
   }
 
@@ -71,7 +71,7 @@ function accessByRole(value) {
 
 function accessAllDocuments(value) {
   if(value === 2) {
-    DocAction.getDocument({'id': null, 'url': buildUrl(urlAll)});
+    DocAction.emitAction({'id': null, 'url': buildUrl(urlAll)}, 'Get');
   }
 }
 
@@ -81,8 +81,8 @@ function startDate(e, date) {
 
 function endDate(e, date) {
   dates.endDate = new Date(date);
-  (access === -1 ) ? DocAction.getDocument({'id': null,
-    'url': buildUrl(urlOthers)}) :
+  (access === -1 ) ? DocAction.emitAction({'id': null,
+    'url': buildUrl(urlOthers)}, 'Get') :
     docAccess(access);
 }
 
@@ -93,20 +93,19 @@ module.exports = React.createClass({
     if(window.localStorage) {
       urlOthers = '/api/v1/documents/?role='+localStorage.getItem('role');
     }
-    console.log('in view docs', DataSource.getUserData());
     return {documents: [], open: false};
   },
   save: function() {
-    DocAction.save(this);
+    DocAction.emitAction(this, 'Save');
   },
   cancel: function() {
 
   },
   click: function () {
-    DocAction.addDocuments(this);
+    DocAction.emitAction(this, 'Add');
   },
   handleClose: function () {
-    DocAction.cancel(this);
+    DocAction.emitAction(this, 'Cancel');
   },
   render: function () {
     return (

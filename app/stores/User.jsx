@@ -117,8 +117,8 @@ function User() {
       'username': username,
       'role': role,
       'email': email,
-      'first': name.first,
-      'last': name.last
+      'first': name.first || name,
+      'last': name.last || name
     }
   }
 

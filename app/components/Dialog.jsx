@@ -6,12 +6,6 @@ module.exports = React.createClass({
   getInitialState: function () {
     return {open: false}
   },
-  open: function () {
-    this.setState({open: true})
-  },
-  hide: function () {
-    this.setState({open: false})
-  },
   render: function () {
     return (
         <Dialog

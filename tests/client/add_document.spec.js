@@ -18,12 +18,12 @@
       snackBar = addDocs.find(SnackBar);
 
     it('should have an input type for title', function () {
-      expect(input).to.have.length.of(1);
+      expect(input).to.have.length.of(2);
       expect(input.nodes[0].props.hint).to.equal('Enter Title');
     })
 
     it('should have a selectfield for role', function () {
-      expect(selectField).to.have.length.of(1);
+      expect(selectField).to.have.length.of(0);
     })
 
     it('should have error and success display message', function () {
@@ -35,12 +35,8 @@
     selectField = addDocs.find(SelectField),
 
     it('should have an input type for title', function () {
-      expect(input).to.have.length.of(1);
+      expect(input).to.have.length.of(2);
       expect(input.nodes[0].props.hint).to.equal('Enter Title');
-    })
-
-    it('should have a selectfield for role', function () {
-      expect(selectField).to.have.length.of(1);
     })
 
   });

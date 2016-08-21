@@ -4,11 +4,11 @@
     expect = require('chai').expect,
     shallow = require('enzyme').shallow,
     mount = require('enzyme').mount,
-    ViewDocuments = require('../../app/components/ViewDocuments.jsx'),
-    DatePicker = require('../../app/components/DatePicker.jsx'),
-    SelectField = require('../../app/components/SelectFieldUsers.jsx'),
-    GridList = require('../../app/components/GridList.jsx'),
-    Dialog = require('../../app/components/Dialog.jsx');
+    ViewDocuments = require('../../../app/components/ViewDocuments.jsx'),
+    DatePicker = require('../../../app/components/DatePicker.jsx'),
+    SelectField = require('../../../app/components/SelectFieldUsers.jsx'),
+    GridList = require('../../../app/components/GridList.jsx'),
+    Dialog = require('../../../app/components/Dialog.jsx');
 
   describe('View Documents', function () {
     var viewDocs = shallow(<ViewDocuments />),
@@ -32,6 +32,7 @@
     it('should have dialog', function () {
       expect(dialog).to.have.length.of(1);
     })
+
 
   });
 
