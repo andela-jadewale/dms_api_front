@@ -12,4 +12,4 @@ after_success:
   - npm run coverage
 addons:
     code_climate:
-        repo_token: 7488462c7716ec628d7ba279f3ad9456ef68bcbdf859c7b4408e947db066bf0f
+        repo_token: 3f4618df63c4cffcf9b48b705f1bb2ce7191bf0393c61be0d9002f94c5965b5e
