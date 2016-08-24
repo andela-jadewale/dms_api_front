@@ -1,6 +1,5 @@
 
   'use strict';
-
   var HostAddress = require('./HostName');
   var Token = require('./Token.js');
   var request = require('superagent');
@@ -229,8 +228,6 @@
       'ownerId': '24', 'access': ['Administrator']}]});
       return;
     }
-
-    console.log(req.url, 'is informative');
 
     request
    .get(req.url)

@@ -136,7 +136,6 @@
       "app/services/LocalStorageSet.js": true,
       "app/services/Token.js": true,
       "app/services/Users.js": true,
-      "app/services/xhrRequest.js": true,
       "app/dispatcher/dispatcher.js": true
     }
   },

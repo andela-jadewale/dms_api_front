@@ -55,7 +55,7 @@ global.window.test = true;
       expect(input).to.have.length.of(2);
       expect(input.nodes[0].props.hint).to.equal('Enter Title');
     })
-/*
+
     it('should have a selectfield for role', function () {
       expect(selectField).to.have.length.of(0);
     })
@@ -78,7 +78,7 @@ global.window.test = true;
       expect(input).to.have.length.of(2);
       expect(input.nodes[0].props.hint).to.equal('Enter Title');
     })
-    */
+
 
   });
 })();
