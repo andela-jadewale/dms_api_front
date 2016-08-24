@@ -178,6 +178,15 @@ global.window.test = true;
 
     })
 
+    describe('get', function () {
+    DocStore.setDocComp(FakeComponent);
+    DocAction.emitAction('null', 'Get');
+    it('find dialogue is open', function() {
+      expect(FakeComponent.getState()[20].show).toBe(true);
+    });
+
+    });
+
 /*
   describe('Create Document', function () {
     DocStore = require('../../../app/stores/Document.jsx');
@@ -237,11 +246,16 @@ global.window.test = true;
       });
 =======
 >>>>>>> change test db
+=======
+    /*
+    describe('confirm', function () {
+    DocStore.setSelf(FakeComponent);
+    DocAction.emitAction({'id':'234'}, 'Confirm');
+    it('find dialogue is open', function() {
+      expect(FakeComponent.getState()[20].show).toBe(true);
     });
 
-    })
-
-
+    }) */
 
 })();
 

@@ -148,7 +148,19 @@
     };
  });
 
+  mock.get('/api/v1/users/undefined/documents/', function(req) {
+    return {
+      body: 'docs'
+    };
+ });
+
  mock.get('/api/v1/documents/undefined', function(req) {
+  return {
+    body: 'docs'
+  };
+ });
+
+ mock.del('/api/v1/documents/234', function(req) {
   return {
     body: 'docs'
   };
@@ -210,7 +222,8 @@
       return;
     }
 
-    if(req.url === '/api/v1/users/null/documents/') {
+    if(req.url === '/api/v1/users/null/documents/' ||
+     '/api/v1/users/undefined/documents/') {
       req.cb({'data': [{'title': 'Document', 'content': 'Hello World',
         'id': '1',
       'ownerId': '24', 'access': ['Administrator']}]});
@@ -234,6 +247,9 @@
   }
 
   function testDelete(req) {
+
+    req.cb({'obj':'data'});
+
     request
    .del(req.url)
    .send(req.body)
