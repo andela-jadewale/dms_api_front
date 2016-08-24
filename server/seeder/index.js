@@ -18,12 +18,6 @@
   };
 
   var uri = 'mongodb://localhost:27017/DocumentManagementSystem';
-  if(process.env.MONGODB_URI) {
-      uri = process.env.MONGODB_URI;
-      options = {
-        server : { poolSize : 5, reconnectTries : 5}
-      };
-  }
   db.connect(uri,options);
   db.connection.on('connected', function () {
     console.log('Default connection open');

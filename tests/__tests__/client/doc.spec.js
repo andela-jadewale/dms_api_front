@@ -166,7 +166,14 @@ global.window.test = true;
     DocAction.emitAction(FakeComponent, 'CancelDelete');
     it('delete box is closed ', function() {
       expect(FakeComponent.getState()[17].delBox).toBe(false);
+    });
+    })
 
+    describe('use autocomplete bar', function () {
+    DocStore.setDocComp(FakeComponent);
+    DocAction.emitAction(FakeComponent, 'Find');
+    it('delete box is closed ', function() {
+      expect(FakeComponent.getState()[17].delBox).toBe(false);
     });
     })
 

@@ -261,7 +261,6 @@ function Documents() {
   }
 
   function deleteDocument(obj) {
-    console.log(obj, 'is here');
      getDocComp().setState({snack: false});
      getDocComp().setState({delBox: true});
      getDocComp().setState({deleteTitle: 'Save changes to delete document '+ obj});
