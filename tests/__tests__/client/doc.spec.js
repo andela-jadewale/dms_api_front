@@ -166,6 +166,7 @@ global.window.test = true;
     DocAction.emitAction(FakeComponent, 'CancelDelete');
     it('delete box is closed ', function() {
       expect(FakeComponent.getState()[17].delBox).toBe(false);
+
     });
     })
 
