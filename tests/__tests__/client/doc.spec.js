@@ -235,59 +235,13 @@ global.window.test = true;
           done();
         })
       });
+=======
+>>>>>>> change test db
     });
-
-    it('registers a callback with the dispatcher', function() {
-      expect(Object.keys(AppDispatcher.length()).length).toBe(1);
-    });
-
-    it("should check states length", function() {
-      expect(Component.getState().length).toBe(3);
-    });
-
-    it('checks snack is set to true ', function() {
-      expect(Component.getState()[1].show).toBe(true);
-    });
-
-    it('test document listener is on search', function(done) {
-      expect(docs.view).toBe('search not found');
-      done();
-    });
-
 
     })
 
 
-  describe('Add documents component', function () {
-    var addDocs = shallow(<AddDocs />),
-      input = addDocs.find(Input),
-      selectField = addDocs.find(SelectField),
-      snackBar = addDocs.find(SnackBar);
-
-    it('should have an input type for title', function () {
-      expect(input).to.have.length.of(2);
-      expect(input.nodes[0].props.hint).to.equal('Enter Title');
-    })
-
-    it('should have a selectfield for role', function () {
-      expect(selectField).to.have.length.of(0);
-    })
-
-    it('should have error and success display message', function () {
-      expect(snackBar).to.have.length.of(2);
-    })
-
-    addDocs = shallow(<AddDocs owner='true' update='true' />);
-    input = addDocs.find(Input),
-    selectField = addDocs.find(SelectField),
-
-    it('should have an input type for title', function () {
-      expect(input).to.have.length.of(2);
-      expect(input.nodes[0].props.hint).to.equal('Enter Title');
-    })
-
-  });
-  */
 
 })();
 

@@ -20,7 +20,7 @@
     it('should have date picker ', function () {
       expect(datePicker).to.have.length.of(2);
     })
-/*
+
     it('should have select field ', function () {
       expect(selectField).to.have.length.of(1);
     })
@@ -32,7 +32,6 @@
     it('should have dialog', function () {
       expect(dialog).to.have.length.of(1);
     })
-    */
 
   });
 

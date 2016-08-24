@@ -94,7 +94,7 @@
       break;
       case 'POST': testPost(req);
       break;
-      case 'DELETE': processDelete(req);
+      case 'DELETE': testDelete(req);
       break;
       case 'PUT': testPut(req);
       break;
@@ -207,13 +207,17 @@
       'title': 'test doc', 'access': ['Admin'], 'content':
        'Hello world',
       'name': {'last': 'Ade', 'first': 'jolaade'} }});
+      return;
     }
 
     if(req.url === '/api/v1/users/null/documents/') {
       req.cb({'data': [{'title': 'Document', 'content': 'Hello World',
         'id': '1',
       'ownerId': '24', 'access': ['Administrator']}]});
+      return;
     }
+
+    console.log(req.url, 'is informative');
 
     request
    .get(req.url)
@@ -225,6 +229,21 @@
        req.cb(err);
      } else {
       req.cb(res.body);
+     }
+   });
+  }
+
+  function testDelete(req) {
+    request
+   .del(req.url)
+   .send(req.body)
+   .set('x-access-token', Token.getToken() ||
+    window.localStorage.getItem('token'))
+   .end(function(err, res) {
+     if (err || !res.ok) {
+       req.cb(err);
+     } else {
+       req.cb(res.body);
      }
    });
   }

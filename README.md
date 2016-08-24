@@ -1,6 +1,6 @@
 # Document Management System
 
-[![Build Status](https://travis-ci.org/andela-jadewale/dms_api.svg?branch=develop)](https://travis-ci.org/andela-jadewale/dms_api)   [![Code Climate](https://codeclimate.com/github/andela-jadewale/dms_api/badges/gpa.svg)](https://codeclimate.com/github/andela-jadewale/dms_api)   [![Test Coverage](https://codeclimate.com/github/andela-jadewale/dms_api/badges/coverage.svg)](https://codeclimate.com/github/andela-jadewale/dms_api/coverage) 
+[![Build Status](https://travis-ci.org/andela-jadewale/dms_api_front.svg?branch=develop)](https://travis-ci.org/andela-jadewale/dms_api_front) [![Code Climate](https://codeclimate.com/github/andela-jadewale/dms_api_front/badges/gpa.svg)](https://codeclimate.com/github/andela-jadewale/dms_api_front)   [![Test Coverage](https://codeclimate.com/github/andela-jadewale/dms_api_front/badges/coverage.svg)](https://codeclimate.com/github/andela-jadewale/dms_api_front/coverage) 
 
 
 Document Management System is an application that helps users manage their documents. A User can upload a document, edit and share with other users.The application permits users to work collaboratively on documents.
