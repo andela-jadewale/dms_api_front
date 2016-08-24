@@ -62,7 +62,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-        <div className='signin-header home home-image'>
+        <div className='signin-header  home-image'>
         <div className='image-div'> </div>
         <form onSubmit={submit} className='form-horizontal'>
           <div className='form-group'>
