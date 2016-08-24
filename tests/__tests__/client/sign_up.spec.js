@@ -75,7 +75,7 @@ global.window.test = true;
     it('should test error snack bar message', function () {
        expect(snackBar.nodes[1].props.message).to.equal('');
     })
-  /*
+
     it('should submit a form ', function () {
       input.nodes[0].props.change({'target': {'value': 'Jolaade'}});
       input.nodes[1].props.change({'target': {'value': 'Adewale'}});
@@ -103,7 +103,6 @@ global.window.test = true;
         expect(user.view).to.equal('user not created');
       });
     })
-    */
 
   })
 

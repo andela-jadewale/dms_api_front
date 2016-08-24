@@ -140,7 +140,6 @@ global.window.test = true;
     DocStore.setDocComp(FakeComponent);
     DocAction.emitAction('1234', 'DeleteError');
     it('shows no access rights snack bar ', function() {
-      console.log(FakeComponent.getState(), 'tupacc');
       expect(FakeComponent.getState()[15].snack).toBe(true);
     });
     })
@@ -178,84 +177,23 @@ global.window.test = true;
 
     })
 
-    describe('get', function () {
+    describe('get documents', function () {
     DocStore.setDocComp(FakeComponent);
     DocAction.emitAction('null', 'Get');
-    it('find dialogue is open', function() {
+    it('doc dialog box shows', function() {
       expect(FakeComponent.getState()[20].show).toBe(true);
     });
 
     });
 
-/*
-  describe('Create Document', function () {
-    DocStore = require('../../../app/stores/Document.jsx');
-    var params = {'username': 'Kenny', 'password': 'Kenny'};
-    FakeComponent = require('../../FakeComponent.js');
-    DocAction = require('../../../app/actions/DocManagementActionCreator.jsx');
-    Component = require('../../FakeComponent.js');
-    addDocument = shallow(<AddDocs/>);
-    DocStore.setSelf(addDocument);
-    DocumentData = {'title': title, 'role': 'Administrator',
-     'content': 'Hello World'};
-    DocStore.setData(DocumentData);
-    DocAction.emitAction(Component, '');
-
-    DocStore.onChange(function(doc) {
-      docs = doc;
-      console.log('I love you')
-    });
-
-    it("should check states length", function() {
-      expect(Component.getState().length).toBe(3);
-    });
-
-    it('checks snack is set to true ', function() {
-      expect(Component.getState()[2].open).toBe(true);
-    });
-
-    it('test document has been created ', function() {
-      expect(docs.view).toBe('documents');
-    });
-
-
-    })
-
-  describe('Find Document', function () {
-
-    beforeEach(function (done) {
-      UserStore = require('../../../app/stores/User.jsx');
-      AppDispatcher = require('../../../app/dispatcher/dispatcher.js');
-      var params = {'username': 'Kenny', 'password': 'Kenny'};
-      Action = require('../../../app/actions/User.jsx');
-      FakeComponent = require('../../FakeComponent.js');
-      DocAction = require('../../../app/actions/DocManagementActionCreator.jsx');
-      UserStore.setSelf(FakeComponent);
-      Action.emitAction(params, 'LogIn');
-      UserStore.onChange(function (user) {
-        users = user;
-        DocStore = require('../../../app/stores/Document.jsx');
-        Component = require('../../FakeComponent.js');
-        addDocument = shallow(<AddDocs/>);
-        DocStore.setSelf(Component);
-        DocAction.find({'value': title, 'data': Component});
-        DocStore.onChange(function (doc) {
-          docs = doc;
-          done();
-        })
-      });
-=======
->>>>>>> change test db
-=======
-    /*
-    describe('confirm', function () {
+    describe('confirm delete', function () {
     DocStore.setSelf(FakeComponent);
-    DocAction.emitAction({'id':'234'}, 'Confirm');
-    it('find dialogue is open', function() {
-      expect(FakeComponent.getState()[20].show).toBe(true);
+    DocAction.emitAction({'id': '234', 'self': FakeComponent}, 'Confirm');
+    it('delete  dialog box is hidden after delete has been confirmed', function() {
+      expect(FakeComponent.getState()[22].delBox).toBe(false);
     });
 
-    }) */
+    });
 
 })();
 

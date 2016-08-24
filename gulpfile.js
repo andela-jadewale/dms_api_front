@@ -51,7 +51,6 @@ gulp.task('css', function () {
 
 gulp.task('img', function () {
   gulp.src(['app/images/*.+(jpg|jpeg|png)'])
-  .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
   .pipe(gulp.dest('./.tmp'))
 })
 
@@ -90,8 +89,6 @@ gulp.task('watch', function() {
   gulp.watch('app/**/*.+(jsx|js)');
     //Watch .scss files
   gulp.watch('app/styles/*.css');
-   // Watch image files
-  //gulp.watch('src/images/**/*', ['images']);
  });
 
 gulp.task('bower', function() {
