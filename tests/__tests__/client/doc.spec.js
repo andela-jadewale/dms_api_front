@@ -171,10 +171,11 @@ global.window.test = true;
 
     describe('use autocomplete bar', function () {
     DocStore.setDocComp(FakeComponent);
-    DocAction.emitAction(FakeComponent, 'Find');
-    it('delete box is closed ', function() {
-      expect(FakeComponent.getState()[17].delBox).toBe(false);
+    DocAction.emitAction({'value': FakeComponent, 'data':FakeComponent }, 'Find');
+    it('find dialogue is open', function() {
+      expect(FakeComponent.getState()[20].show).toBe(true);
     });
+
     })
 
 /*
