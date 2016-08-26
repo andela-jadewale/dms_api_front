@@ -48,7 +48,7 @@ module.exports = React.createClass({
       documentText: '', owner: false,  access: null ,
       rights: false, snack : false, snackError: false,};
     }
-    if((this.props.owner) === 'owner') {
+    if((this.props.owner) === 'owner' || true) {
       return {roles: [{title: 'test'}], open: false, title: '', documentText: '',
      access : null, owner: true, snack : false, snackError: false, rights: false };
     }

@@ -13,7 +13,8 @@ var SnackBar = require('./SnackBar.jsx');
 
 
 var styles = {
-  backgroundColor: '#4285f4'
+  backgroundColor: '#4285f4',
+  position: 'fixed',
 }
 
 function editProfile(obj) {
@@ -60,23 +61,23 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-       <AppBar title='Document management System' style={styles} >
+       <AppBar className='header-class' title='Document management System' style={styles} >
            <IconMenu
-          iconStyle={{ fill: '#fff'}}
+          iconStyle={{ fill: '#fff', marginTop: 8}}
           iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
-          targetOrigin={{horizontal: 'right', vertical: 'top'}}
-          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+          targetOrigin={{horizontal: 'right', vertical: 'center'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'center'}}
           onItemTouchTap={this.edit} animated='true'
           >
           <MenuItem key='Edit' primaryText="Edit Profile" />
           <MenuItem key='Role' primaryText="Add Role" />
           <MenuItem key='Out' primaryText="Sign out" />
           </IconMenu>
-          <Dialog display={<EditUser data={this.state.data} /> }
+          <Dialog title='Edit User' display={<EditUser data={this.state.data} /> }
            save={this.save}
            cancel={this.cancel} open={this.state.open}/>
 
-           <Dialog display={<AddRole/> }
+           <Dialog title='Add new Role' display={<AddRole/> }
            save={this.saveRole}
            cancel={this.cancelRole} open={this.state.show}/>
           <SnackBar open={this.state.snack} message={this.state.message}/>

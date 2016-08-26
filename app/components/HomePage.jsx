@@ -45,7 +45,7 @@ module.exports = React.createClass({
        </div>
        <div className='bottomPage'>
        <Tabs data={this.props.data} />
-       <Dialog
+       <Dialog title='Update Document'
         display={<AddDocuments update='true' id={this.state.id} />}
         scroll='true'
         save={this.save}

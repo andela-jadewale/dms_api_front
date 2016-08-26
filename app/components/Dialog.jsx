@@ -9,7 +9,6 @@ module.exports = React.createClass({
   render: function () {
     return (
         <Dialog
-          className='form-horizontal'
           title={this.props.title}
           autoScrollBodyContent={this.props.scroll}
           contentStyle={this.props.style}

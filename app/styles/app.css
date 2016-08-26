@@ -1,15 +1,32 @@
 body{
       font-family: 'Open Sans',sans-serif;
       font-size: 14px;
-      line-height: 1.42857;
-      color: #757575;
+      background-color:#eeeeee;
+      margin:0;
+      max-height: 1200px !important;
+      overflow: scroll;
     }
 
     .image-div {
       height :3%;
     }
-    .log-div {
+
+    .image-divs {
       height :30%;
+    }
+    .auto {
+      margin:auto;
+    }
+
+    .long {
+      height: 1200px !important;
+    }
+
+    .form-height {
+      height: 1200px;
+    }
+    .log-div {
+      height :10%;
     }
 
     .signin-header {
@@ -17,6 +34,13 @@ body{
       height: auto;
     }
 
+    .full-height {
+      height: 100% !important;
+    }
+
+    .space{
+      width: 100%;
+    }
     .paper {
       background-color: rgba(245, 245, 245, 0.12);
       margin-left: 50px;
@@ -39,7 +63,7 @@ body{
     .form-horizontal {
       margin: auto;
       clear:both;
-      width: 50%;
+      width: 45%;
       border: 1px solid rgba(128,128,128,0.1);
       border-radius: 5px;
       position: relative;
@@ -49,6 +73,7 @@ body{
     .tab{
       background-color: #009688;
     }
+
 
     .form-container {
       max-width: 420px;
@@ -62,21 +87,29 @@ body{
     }
 
     .inputAcess{
+      margin-top: 10%;
       padding: 30px;
       height: 4%;
     }
+
     .clear {
       clear:both;
       height:1%;
     }
+
     .left{
       float:left;
       margin-left:50px;
     }
+
     .homePageSearch {
-      height: 13%;
-      padding:2% 10% 2% 10%;
       background-color:#424249;
+      position: fixed;
+      width: 80%;
+      z-index: 1000;
+      height: 10%;
+      padding: 5% 10% 2% 10%;
+      background-color: #424249;
     }
     .bottomPage {
       padding:2% 10% 2% 10%;
@@ -90,6 +123,18 @@ body{
     }
     .form-horizontal .form-group {
       margin: auto;
+      clear:both;
+      width: 80%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+
+    .marg{
+      margin-left: 3%;
+    }
+
+  .for-class {
+    margin: auto;
       clear:both;
       width: 80%;
       padding-top: 5px;
@@ -110,10 +155,10 @@ body{
       background-color:rgb(225,95,56);
       color: #fff;
     }
-    .form-group {
+    .p {
       margin-bottom: 15px;
       width: 90%;
-      text-align: center;
+      tform-grouext-align: center;
     }
 
     .black-color {
@@ -123,12 +168,25 @@ body{
       float:left;
     }
     .home-image {
-      background-image: url('index2.png');
+      background-image: url('bg.jpg');
       background-repeat: no-repeat;
       background-size: cover;
       background-position: center;
     }
 
+  .img-bg{
+    background-image: url('Logo.png');
+    background-repeat: no-repeat;
+    background-size: 11% 100%;
+    background-position: center;
+    margin: auto;
+    height: 86px;
+    clear: both;
+    width: 50%;
+    margin-bottom: 2%;
+
+
+  }
     .left-margin {
       margin-left: 5px;
     }
@@ -191,12 +249,21 @@ body{
     .grid :nth-child(1){
       color: #444444;
       font-weight:bold;
+      font-size: 7px;
     }
 
-    .grid :nth-child(2){
+    .grid :nth-child(2) {
       color: #7d7d7d;
+      font-weight:200 !important;
+       font-size:12px !important;
+    }
+    .for-class:nth-child(2) {
+        margin-left: 3%;
     }
 
+    .header-class {
+      font-size: 18px !important;
+    }
 
     .grid:hover {
       cursor:pointer;
@@ -211,14 +278,48 @@ body{
       height: auto;
     }
 
+    .center-center {
+    text-align: center;
+    position: absolute;
+    width: 66%;
+    color: #4285f4;
+    font-size: 27px;
+    height: 132px;
+      }​
+
+    .span-class {
+      margin: auto;
+      clear: both;
+      width: 50%;
+      margin-bottom: 3%;
+    }
+
+  @media only screen and (max-width: 605px) {
+    .homePageSearch {
+      background-color:#424249;
+      position: fixed;
+      width: 80%;
+      margin-top: 10%;
+      z-index: 1000;
+      height: 10%;
+      padding: 5% 10% 2% 10%;
+      background-color: #424249;
+    }
+  }
+
+  .form-group button {
+    color: white !important;
+  }
+
+
     .empty-data {
-      position: absolute;
       width: 50% !important;
       font-size: 30px;
       text-align: center;
       margin-left: 20%;
       margin-right: 20%;
       color: #4285f4;
+      z-index: 12000;
     }
 
     .blink {
@@ -230,12 +331,12 @@ body{
     }
 
     .paperDiv {
-      /*border-bottom: 1px solid #d3d3d3;*/
-      border-bottom: 1px solid #4285f4;
+      border-top: 1px solid transparent;
+      border-bottom: 1px solid #4285f4 ;
       background-color: #FBFBFB;
       height:145px;
       color:#7d7d7d !important;
-      font-weight:normal !important;
+      font-size:7px !important;
     }
 
     .grey {
@@ -246,6 +347,22 @@ body{
       width: 96%;
       padding-left: 2%;
     }
+
+    .fulls {
+        height: 700px;
+        background-image: url(../images/sign-log-bg.jpg);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        padding-top: 15%;
+    }
+
+    .center-div {
+    margin: auto;
+    clear: both;
+    width: 50%;
+    background-color: #f7f7f7;
+}
 
     .placeHolder:nth-child(1) {
         color: black;

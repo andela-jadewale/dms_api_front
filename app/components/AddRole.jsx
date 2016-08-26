@@ -14,7 +14,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <InputForm change={roleText}  float='Add Role' fullWidth='true' required='true' hint='Enter Role' />
+      <InputForm change={roleText}  float='Add Role' fullWidth='true' required='true' />
       )
   }
 })

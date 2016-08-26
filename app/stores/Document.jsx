@@ -89,7 +89,8 @@ function Documents() {
          documents.view = 'doc updated';
        }
        else{
-        getSelf().setState({snackError: true});
+        //getSelf().setState({snackError: true});
+        //getSelf().setState({snack: true});
         documents.view = 'Error creating doc';
        }
       triggerListeners();
@@ -203,12 +204,14 @@ function Documents() {
   }
 
   function processDoc(obj) {
-    if(obj.data.ownerId === DataSource.getUserData()._id) {
+    if(obj.data.ownerId === DataSource.getUserData()._id
+      || localStorage.getItem('id')) {
       getSelf().setState({owner: true});
       getSelf().setState({config: ownerConfig})
     }
     else{
-      if(obj.data.access.indexOf(DataSource.getUserData().role) !== -1) {
+      if(obj.data.access.indexOf(DataSource.getUserData().role
+        || localStorage.getItem('role')) !== -1) {
         getSelf().setState({rights: true});
         getSelf().setState({config: ownerConfig})
       }
