@@ -26,7 +26,6 @@ gulp.task('min',['bundle'], function() {
       .pipe(rename({suffix: '.min'}))
       .pipe(uglify())
       .pipe(sourcemaps.write())
-      .pipe(gulpIgnore.exclude([ "./node_modules/**" ]))
       .pipe(gulp.dest('./.tmp'));
 });
 
