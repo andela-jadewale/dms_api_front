@@ -22,10 +22,8 @@ var paths = './node_modules/**';
 // minimise app.js
 gulp.task('min',['bundle'], function() {
     return gulp.src('./.tmp/app.js')
-      .pipe(sourcemaps.init())
       .pipe(rename({suffix: '.min'}))
       .pipe(uglify())
-      .pipe(sourcemaps.write())
       .pipe(gulp.dest('./.tmp'));
 });
 
@@ -94,6 +92,5 @@ gulp.task('serve', ['nodemon','watch','min','bower'], function () {
 })
 
 gulp.task('production', ['build']);
-gulp.task('heroku:production', ['production']);
 gulp.task('build', ['nodemon','min','bower']);
 
