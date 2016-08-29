@@ -152,7 +152,7 @@ function Documents() {
   function getDocument(obj) {
     try {
       obj.url ? getDocView(obj.url, 'GET', viewDoc) :
-        getDocView(docUser + obj+ '/documents/', 'GET', viewDoc)
+        getDocView('/api/v1/documents/', 'GET', viewDoc)
       } catch(e) {
         browserHistory.push('/');
       }

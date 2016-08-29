@@ -40,8 +40,8 @@ var root = {
     justifyContent: 'space-around',
 }
 var topStyle = {
-  marginTop : 15,
-  marginLeft: 20,
+  margin : 20,
+  marginBottom: 30,
   padding: 15,
   border: '1px solid #d3d3d3',
   backgroundColor: '#FBFBFB',
@@ -79,7 +79,7 @@ function getStyle (e) {
   return {
     width: 900,
     minWidth: 450,
-    height: heightSize,
+    padding: 20,
     marginTop: 10,
     backgroundColor: '#eeeeee'
   };

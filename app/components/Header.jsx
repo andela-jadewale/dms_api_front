@@ -67,7 +67,7 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-       <AppBar className='header-class' title='Document management System'
+       <AppBar className='header-class' title='Kenny Docs'
        iconElementLeft={
         <IconMenu
           iconStyle={{ fill: '#fff', marginTop: 8}}

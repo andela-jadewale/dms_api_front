@@ -41,9 +41,7 @@ body{
     .space{
       width: 100%;
     }
-    .paper {
-      background-color: rgba(245, 245, 245, 0.12);
-    }
+
 
    .white {
     background-color: white;
@@ -324,6 +322,9 @@ body{
       margin:0;
       max-height: 1200px !important;
       overflow: scroll;
+    }
+    .paper {
+      background-color: rgba(245, 245, 245, 0.12);
     }
     .bottomPage {
       padding:2% 10% 2% 10%;
