@@ -228,6 +228,7 @@ function Documents() {
     }
     documents.view = 'Add docs';
     getSelf().setState({title: obj.data.title});
+    data.title = obj.data.title;
     getSelf().setState({documentText: obj.data.content});
     getSelf().setState({access: obj.data.access[0]});
     tinyMce().get('text').setContent(obj.data.content);
