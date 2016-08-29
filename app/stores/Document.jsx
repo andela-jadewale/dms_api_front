@@ -177,7 +177,6 @@ function Documents() {
       documents = {'data': obj, 'view': 'documents'};
 
       if(!obj.length) {
-        console.log('wow')
         browserHistory.push('/');
         return;
       }
