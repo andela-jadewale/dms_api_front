@@ -197,7 +197,8 @@ function User() {
     onChange: onChange,
     getRoles: getRoles,
     getSelf: getSelf,
-    setData: setData
+    setData: setData,
+    getData: getData
   }
 
 }

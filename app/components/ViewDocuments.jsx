@@ -97,6 +97,7 @@ module.exports = React.createClass({
   },
   save: function() {
     DocAction.emitAction(this, 'Save');
+    //this.setState({open: false});
   },
   cancel: function() {
 

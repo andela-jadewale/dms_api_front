@@ -1,17 +1,20 @@
 
   var User = require('./ParseUsers.js'),
     Request = require('./xhrRequest.js'),
-    Errors = require('./Error.js');
+    Errors = require('./Error.js'),
+    Password = require('./DataSource.js');
 
   module.exports =  {
     logIn: function (url, type, params, cb) {
       'use strict';
+      Password.setPassword(params.password);
       User.logUserIn(params)? sendRequest(url, type, params, cb):
        cb(Errors.getData());
     },
 
      signUp: function (url, type, params, cb) {
       'use strict';
+      Password.setPassword(params.password);
       User.signUp(params) ? sendRequest(url, type, params, cb):
        cb(Errors.getData());
     },

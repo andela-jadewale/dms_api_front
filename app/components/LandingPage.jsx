@@ -17,7 +17,7 @@ var muiTheme = getMuiTheme({
 
 module.exports = React.createClass({
   getInitialState: function () {
-    if(localStorage.getItem('username')){
+    if(localStorage.getItem('username') && localStorage.getItem('token')){
       browserHistory.push('/documents');
     }
     return {};

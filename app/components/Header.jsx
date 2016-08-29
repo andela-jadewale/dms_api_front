@@ -10,6 +10,8 @@ var UserAction = require('../actions/User.jsx');
 var RoleAction = require('../actions/Role.jsx');
 var AddRole = require('./AddRole.jsx');
 var SnackBar = require('./SnackBar.jsx');
+var User = require('../stores/User.jsx');
+var Password = require('../services/DataSource.js');
 
 
 var styles = {
@@ -50,6 +52,10 @@ module.exports = React.createClass({
   },
   save: function () {
     UserAction.emitAction(this, 'ConfirmEdit');
+    User.getData();
+    console.log(User.getData());
+    console.log(Password.getPassword());
+    return;
     this.setState({open: false});
   },
   saveRole: function () {
@@ -61,7 +67,21 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-       <AppBar className='header-class' title='Document management System' style={styles} >
+       <AppBar className='header-class' title='Document management System'
+       iconElementLeft={
+        <IconMenu
+          iconStyle={{ fill: '#fff', marginTop: 8}}
+          iconButtonElement={ <IconButton><div className='img-bg'></div></IconButton> }
+          targetOrigin={{horizontal: 'right', vertical: 'center'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'center'}}
+          onItemTouchTap={this.edit} animated='true'
+          >
+          <MenuItem key='Edit' primaryText="Edit Profile" />
+          <MenuItem key='Role' primaryText="Add Role" />
+          <MenuItem key='Out' primaryText="Sign out" />
+          </IconMenu>
+       }
+       style={styles} >
            <IconMenu
           iconStyle={{ fill: '#fff', marginTop: 8}}
           iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
@@ -73,7 +93,7 @@ module.exports = React.createClass({
           <MenuItem key='Role' primaryText="Add Role" />
           <MenuItem key='Out' primaryText="Sign out" />
           </IconMenu>
-          <Dialog title='Edit User' display={<EditUser data={this.state.data} /> }
+          <Dialog title='Edit User' scroll='true' display={<EditUser data={this.state.data} /> }
            save={this.save}
            cancel={this.cancel} open={this.state.open}/>
 

@@ -78,10 +78,12 @@ function Documents() {
       }
       else{
         if((data.content) && (data.title)) {
-          data.id = DataSource.getUserData()._id;
+          data.id = DataSource.getUserData()._id || localStorage.getItem('id');
           UserHelper.sendRequest(docUrl, 'POST', data, saveDoc);
+        }
       }
-      }
+      data = null;
+      data = '';
     }
     else {
        if(getSelf().props.update) {
@@ -89,8 +91,8 @@ function Documents() {
          documents.view = 'doc updated';
        }
        else{
-        //getSelf().setState({snackError: true});
-        //getSelf().setState({snack: true});
+        getSelf().setState({snackError: true});
+        getSelf().setState({snack: true});
         documents.view = 'Error creating doc';
        }
       triggerListeners();
@@ -148,10 +150,10 @@ function Documents() {
   }
 
   function getDocument(obj) {
-    try{
+    try {
       obj.url ? getDocView(obj.url, 'GET', viewDoc) :
         getDocView(docUser + obj+ '/documents/', 'GET', viewDoc)
-      }catch(e){
+      } catch(e) {
         browserHistory.push('/');
       }
 
@@ -174,6 +176,11 @@ function Documents() {
     else {
       documents = {'data': obj, 'view': 'documents'};
 
+      if(!obj.length) {
+        console.log('wow')
+        browserHistory.push('/');
+        return;
+      }
       obj.forEach(function (object) {
         DataSource.getSource[object.title] = {'content': object.content, 'id': object._id,
           'ownerId': object.ownerId, 'access': object.access};

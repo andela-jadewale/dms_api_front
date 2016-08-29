@@ -12,6 +12,7 @@ var TinyMCE = require('react-tinymce');
 var DocStore = require('../stores/Document.jsx');
 var DocAction = require('../actions/DocManagementActionCreator.jsx');
 var EnvironmentDetect = require('../services/Environment.js');
+var title = '';
 
 function accessRole(e) {
   DocumentData.role = [e];

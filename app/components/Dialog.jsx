@@ -1,6 +1,6 @@
 var React = require('react');
 var Dialog = require('material-ui/Dialog').default;
-var Buttons = require('./Buttons.jsx');
+var Buttons = require('./FlatButton.jsx');
 
 module.exports = React.createClass({
   getInitialState: function () {

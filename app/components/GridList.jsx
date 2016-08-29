@@ -271,7 +271,7 @@ module.exports = React.createClass({
   },
   render: function () {
     return (
-      <div style={root}>
+      <div className='grid-box' style={root}>
       <GridList cols={this.state.cols} id={setId()} cellHeight={200}
       style={getStyle(this.props.data.length)}>
       {

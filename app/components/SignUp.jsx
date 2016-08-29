@@ -88,7 +88,7 @@ module.exports = React.createClass({
           <SnackBar open={this.state.open} message='User Account created'/>
            <SnackBar open={this.state.errors} message={this.state.texts}/>
         <div className='clear'> </div>
-         <div className='for-class'>
+         <div className='for'>
            <span className='black-color'> Already have an account ? <Link to='/'>Log In</Link></span>
           </div>
         </form>
