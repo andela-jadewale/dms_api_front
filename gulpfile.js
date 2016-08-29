@@ -20,7 +20,7 @@ var mochaPhantomJS = require('gulp-mocha-phantomjs');
 var paths = './node_modules/**';
 
 // minimise app.js
-gulp.task('min', function() {
+gulp.task('min',['bundle'], function() {
     return gulp.src('./.tmp/app.js')
       .pipe(sourcemaps.init())
       .pipe(rename({suffix: '.min'}))
@@ -87,7 +87,7 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('./.tmp'));
 });
 
-gulp.task('serve', ['nodemon','watch','bundle','min','bower'], function () {
+gulp.task('serve', ['nodemon','watch','min','bower'], function () {
   browserSync.init(null, {
     proxy: 'http://localhost:8084',
     port: 9001
@@ -96,5 +96,5 @@ gulp.task('serve', ['nodemon','watch','bundle','min','bower'], function () {
 
 gulp.task('production', ['build']);
 gulp.task('heroku:production', ['production']);
-gulp.task('build', ['nodemon','bundle', 'min','bower']);
+gulp.task('build', ['nodemon','min','bower']);
 
