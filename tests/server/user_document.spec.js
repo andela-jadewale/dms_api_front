@@ -512,7 +512,7 @@ describe('documents', function() {
       .end(function(err, res) {
       chai.request(server)
       .get('/api/v1/documents/?token=' + res.body.token +
-        '&newDate=' + new Date('2016-08-30T00:00:00') +'&date=' + new Date('2016-08-29T00:00:00') +
+        '&newDate=' + new Date('2016-08-31T00:00:00') +'&date=' + new Date('2016-08-30T00:00:00') +
         '&skip=10&limit=10')
       .end(function(err, res) {
         res.should.have.status(200);
@@ -531,8 +531,8 @@ describe('documents', function() {
       .end(function(err, res) {
       chai.request(server)
       .get('/api/v1/documents/?token=' + res.body.token +
-        '&skip=5&newDate='+new Date('2016-08-29T23:00:00')+
-        '&date='+ new Date('2016-08-29T00:00:00'))
+        '&skip=5&newDate='+new Date('2016-08-30T23:00:00')+
+        '&date='+ new Date('2016-08-30T00:00:00'))
       .end(function(err, res) {
         res.should.have.status(200);
         res.should.be.json;
