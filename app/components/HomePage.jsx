@@ -34,6 +34,7 @@ module.exports = React.createClass({
       <div>
         <Header data={this.props.data}  />
         <div className='homePageSearch'>
+        <div className='setAuto'>
         <AutoComplete animated='true'
         style={{color: '#fff'}}
         filter={this.state.filter}
@@ -42,6 +43,7 @@ module.exports = React.createClass({
         underlineFocusStyle={{borderBottom: 'solid 2px', borderColor: '#4285f4'}}
         onNewRequest={this.find} open={this.state.show} openOnFocus={this.state.show}
         onUpdateInput={this.search}  dataSource={this.state.dataSource}  fullWidth='true' hintText='Search for documents' />
+       </div>
        </div>
        <div className='bottomPage'>
        <Tabs data={this.props.data} />

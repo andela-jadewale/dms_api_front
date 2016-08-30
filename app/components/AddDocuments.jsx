@@ -98,7 +98,7 @@ module.exports = React.createClass({
       <SnackBar open={this.state.snack} message='Document Saved Successfully'/>
       </div>
       <div>
-      <SnackBar open={this.state.snackError} message='Error saving document. Use a uniqute title with content.'/>
+      <SnackBar open={this.state.snackError} message='Error saving document. Use a unique title with content.'/>
       </div>
       </div>
     )

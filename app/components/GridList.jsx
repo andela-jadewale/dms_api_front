@@ -117,9 +117,11 @@ function view(e) {
   that.props.data.forEach(function (doc) {
     if(doc._id == id) {
       that.setState({details: doc});
+      that.setState({previewTitle: doc.title});
       var ownerId = doc.ownerId;
     }
   })
+  console.log(id, 'ino errore');
   that.setState({preview: true});
 }
 
@@ -207,7 +209,8 @@ module.exports = React.createClass({
     that = this;
     DocStore.setDocComp(this);
     return {open:false, id:false, owner: false, deleteTitle: '',
-    delBox : false, snack: false, cols: 3, details: [], preview: false}
+    delBox : false, snack: false, cols: 3, details: [],
+     preview: false, previewTitle: ''}
   },
   save: function () {
     DocAction.emitAction(this, 'Save');
@@ -227,6 +230,7 @@ module.exports = React.createClass({
       return;
     }
 
+
     if(e.target.id === 'view') {
       view(e.target.title);
       return;
@@ -242,14 +246,14 @@ module.exports = React.createClass({
       docView(getIdFromProps(that, id), getIdFromProps(that, id, 'id'));
     }
 
-
     if(e.target.className === 'paperDiv') {
-      docView(getIdFromProps(this, e.target.id),
-        getIdFromProps(this, e.target.id, 'id'));
+      view('preview:'+e.target.title);
+      return;
     }
 
     if(storageId() == e.target.className ) {
-      docView(storageId(), e.target.id);
+      view('preview:'+e.target.id);
+      return;
     }
   },
   handleClose: function (e) {
@@ -287,7 +291,7 @@ module.exports = React.createClass({
               <FontIcon style={{fontSize: '15', marginRight: '10'}} id='edit' title={'edit:'+ object._id} hoverColor={Green} className="material-icons" color={Gray} >edit</FontIcon>
               <FontIcon style={{fontSize: '15', marginRight: '10'}} id='delete' title={object._id} onClick={del(object._id)} hoverColor='#C62828' className="material-icons" color={Gray} >delete</FontIcon>
               </div>}>
-              <div id={getId()} className='paperDiv' onClick={that.handleOpen} dangerouslySetInnerHTML={{__html: object.content }} />
+              <div id={getId()} title={object._id} className='paperDiv' onClick={that.handleOpen} dangerouslySetInnerHTML={{__html: object.content }} />
 
 
             </GridTile>
@@ -304,7 +308,7 @@ module.exports = React.createClass({
            save={this.save}
            cancel={this.handleClose} open={this.state.open}/>
 
-      <Dialog title='View Documents' display={<Preview data={this.state.details}/>}
+      <Dialog title={this.state.previewTitle} display={<Preview data={this.state.details}/>}
            save={this.closePreview}
            cancel={this.closePreview} open={this.state.preview}/>
       </GridList>
