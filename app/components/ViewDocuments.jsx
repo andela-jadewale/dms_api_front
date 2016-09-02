@@ -97,6 +97,7 @@ module.exports = React.createClass({
   },
   save: function() {
     DocAction.emitAction(this, 'Save');
+    //this.setState({open: false});
   },
   cancel: function() {
 
@@ -121,7 +122,7 @@ module.exports = React.createClass({
 
 
       <div className='left'>
-      <SelectField getValue={docAccess} />
+      <SelectField  getValue={docAccess} />
       </div>
       </div>
 
@@ -135,7 +136,7 @@ module.exports = React.createClass({
       </div>
 
       <div>
-        <Dialog scroll='true' display={<AddDocuments owner='owner'/>}
+        <Dialog scroll='true' title='Add new Document' display={<AddDocuments owner='owner'/>}
            save={this.save}
            cancel={this.handleClose} open={this.state.open}/>
        </div>

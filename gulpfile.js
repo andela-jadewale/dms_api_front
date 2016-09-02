@@ -5,6 +5,7 @@ var browserify = require('browserify');
 var source = require('vinyl-source-stream');
 var bower = require('gulp-bower');
 var reactify = require('reactify');
+var gulpIgnore = require('gulp-ignore');
 var path = require('path');
 var less = require('gulp-less');
 var concat = require('gulp-concat');
@@ -13,29 +14,16 @@ var rename = require('gulp-rename');
 var nodemon = require('gulp-nodemon');
 var imagemin = require('gulp-imagemin');
 var cache = require('gulp-cache');
+var sourcemaps = require('gulp-sourcemaps');
 var mochaPhantomJS = require('gulp-mocha-phantomjs');
 
-var paths = {
-    public: 'public/**',
-    jade: ['!app/shared/**', 'app/**/*.jade'],
-    scripts: 'app/**/*.js',
-    images: 'app/images/**/*',
-    staticFiles: [
-      '!app/**/*.+(less|css|js|jade)',
-      '!app/images/**/*',
-      'app/**/*.*'
-    ],
-    unitTests: [],
-    serverTests: ['./tests/server/**/*.spec.js'],
-    libTests: ['lib/tests/**/*.js'],
-    styles: 'app/styles/*.+(less|css)'
-  };
+var paths = './node_modules/**';
 
 // minimise app.js
-gulp.task('min', function() {
-    return gulp.src('app/**/*.+(js|jsx)')
+gulp.task('min',['bundle'], function() {
+    return gulp.src('./.tmp/app.js')
       .pipe(rename({suffix: '.min'}))
-      .pipe(concat('app/main.jsx'))
+      .pipe(uglify())
       .pipe(gulp.dest('./.tmp'));
 });
 
@@ -51,7 +39,6 @@ gulp.task('css', function () {
 
 gulp.task('img', function () {
   gulp.src(['app/images/*.+(jpg|jpeg|png)'])
-  .pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
   .pipe(gulp.dest('./.tmp'))
 })
 
@@ -90,8 +77,6 @@ gulp.task('watch', function() {
   gulp.watch('app/**/*.+(jsx|js)');
     //Watch .scss files
   gulp.watch('app/styles/*.css');
-   // Watch image files
-  //gulp.watch('src/images/**/*', ['images']);
  });
 
 gulp.task('bower', function() {
@@ -99,7 +84,7 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('./.tmp'));
 });
 
-gulp.task('serve', ['nodemon','watch','bundle','min','bower'], function () {
+gulp.task('serve', ['nodemon','watch','min','bower'], function () {
   browserSync.init(null, {
     proxy: 'http://localhost:8084',
     port: 9001
@@ -107,6 +92,5 @@ gulp.task('serve', ['nodemon','watch','bundle','min','bower'], function () {
 })
 
 gulp.task('production', ['build']);
-gulp.task('heroku:production', ['production']);
-gulp.task('build', ['nodemon','bundle', 'min','bower']);
+gulp.task('build', ['nodemon','min','bower']);
 

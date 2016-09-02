@@ -2,9 +2,8 @@
 var request = require('superagent');
 var mock = require('superagent-mocker')(request);
 
-
-function mockedServer(req) {
-   switch(req.type) {
+var requestServer = function (req) {
+  switch(req.type) {
       case 'GET': testGet(req);
       break;
       case 'POST': testPost(req);
@@ -14,7 +13,9 @@ function mockedServer(req) {
       case 'PUT': testPut(req);
       break;
     }
-}
+
+
+};
 
 mock.post('/api/v1/roles/', function(req) {
          return {
@@ -93,7 +94,7 @@ mock.post('/api/v1/roles/', function(req) {
  });
 
 
- function testPut(req) {
+function testPut(req) {
   if(req.url === '/api/v1/documents/undefined') {
       req.cb({'doc': {'ownerId': 'hdhd',
       'title': 'test doc', 'access': ['Admin'], 'content':
@@ -109,7 +110,7 @@ mock.post('/api/v1/roles/', function(req) {
   request
    .put(req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken() ||
+   .set('x-access-token', '536363' ||
     window.localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
@@ -149,7 +150,7 @@ mock.post('/api/v1/roles/', function(req) {
     request
    .get(req.url)
    .query(req.query)
-   .set('x-access-token', Token.getToken() ||
+   .set('x-access-token', '536363' ||
     window.localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
@@ -163,11 +164,10 @@ mock.post('/api/v1/roles/', function(req) {
   function testDelete(req) {
 
     req.cb({'obj':'data'});
-
     request
    .del(req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken() ||
+   .set('x-access-token', '536363' ||
     window.localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
@@ -202,7 +202,7 @@ mock.post('/api/v1/roles/', function(req) {
      request
    .post(req.url)
    .send(req.body)
-   .set('x-access-token', Token.getToken() ||
+   .set('x-access-token', '536363' ||
     window.localStorage.getItem('token'))
    .end(function(err, res) {
      if (err || !res.ok) {
@@ -213,6 +213,6 @@ mock.post('/api/v1/roles/', function(req) {
    });
   }
 
-
-
-module.exports = request;
+module.exports = {
+  'request': requestServer
+};

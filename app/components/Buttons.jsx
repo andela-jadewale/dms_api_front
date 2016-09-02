@@ -6,7 +6,7 @@ module.exports = React.createClass({
   render: function () {
     return (
          <RaisedButtons backgroundColor={this.props.bg} type={this.props.type}
-         onTouchTap={this.props.click}
+         onTouchTap={this.props.click} labelStyle={{color: '#fff'}}
          fullWidth={this.props.width} className={this.props.className} label={this.props.label}/>
     )
   }

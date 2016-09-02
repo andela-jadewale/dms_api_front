@@ -12,6 +12,7 @@ var TinyMCE = require('react-tinymce');
 var DocStore = require('../stores/Document.jsx');
 var DocAction = require('../actions/DocManagementActionCreator.jsx');
 var EnvironmentDetect = require('../services/Environment.js');
+var title = '';
 
 function accessRole(e) {
   DocumentData.role = [e];
@@ -48,7 +49,7 @@ module.exports = React.createClass({
       documentText: '', owner: false,  access: null ,
       rights: false, snack : false, snackError: false,};
     }
-    if((this.props.owner) === 'owner') {
+    if((this.props.owner) === 'owner' || true) {
       return {roles: [{title: 'test'}], open: false, title: '', documentText: '',
      access : null, owner: true, snack : false, snackError: false, rights: false };
     }
@@ -97,7 +98,7 @@ module.exports = React.createClass({
       <SnackBar open={this.state.snack} message='Document Saved Successfully'/>
       </div>
       <div>
-      <SnackBar open={this.state.snackError} message='Error saving document. Use a uniqute title with content.'/>
+      <SnackBar open={this.state.snackError} message='Error saving document. Use a unique title with content.'/>
       </div>
       </div>
     )

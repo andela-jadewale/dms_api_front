@@ -10,10 +10,13 @@ var UserAction = require('../actions/User.jsx');
 var RoleAction = require('../actions/Role.jsx');
 var AddRole = require('./AddRole.jsx');
 var SnackBar = require('./SnackBar.jsx');
+var User = require('../stores/User.jsx');
+var Password = require('../services/DataSource.js');
 
 
 var styles = {
-  backgroundColor: '#4285f4'
+  backgroundColor: '#4285f4',
+  position: 'fixed',
 }
 
 function editProfile(obj) {
@@ -49,6 +52,10 @@ module.exports = React.createClass({
   },
   save: function () {
     UserAction.emitAction(this, 'ConfirmEdit');
+    User.getData();
+    console.log(User.getData());
+    console.log(Password.getPassword());
+    return;
     this.setState({open: false});
   },
   saveRole: function () {
@@ -60,23 +67,37 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-       <AppBar title='Document management System' style={styles} >
-           <IconMenu
-          iconStyle={{ fill: '#fff'}}
-          iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
-          targetOrigin={{horizontal: 'right', vertical: 'top'}}
-          anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+       <AppBar className='header-class' title='Kenny Docs'
+       iconElementLeft={
+        <IconMenu
+          iconStyle={{ fill: '#fff', marginTop: 8}}
+          iconButtonElement={ <IconButton><div className='img-bg'></div></IconButton> }
+          targetOrigin={{horizontal: 'right', vertical: 'center'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'center'}}
           onItemTouchTap={this.edit} animated='true'
           >
           <MenuItem key='Edit' primaryText="Edit Profile" />
           <MenuItem key='Role' primaryText="Add Role" />
           <MenuItem key='Out' primaryText="Sign out" />
           </IconMenu>
-          <Dialog display={<EditUser data={this.state.data} /> }
+       }
+       style={styles} >
+           <IconMenu
+          iconStyle={{ fill: '#fff', marginTop: 8}}
+          iconButtonElement={ <IconButton><MoreVertIcon /></IconButton> }
+          targetOrigin={{horizontal: 'right', vertical: 'center'}}
+          anchorOrigin={{horizontal: 'right', vertical: 'center'}}
+          onItemTouchTap={this.edit} animated='true'
+          >
+          <MenuItem key='Edit' primaryText="Edit Profile" />
+          <MenuItem key='Role' primaryText="Add Role" />
+          <MenuItem key='Out' primaryText="Sign out" />
+          </IconMenu>
+          <Dialog title='Edit User' scroll='true' display={<EditUser data={this.state.data} /> }
            save={this.save}
            cancel={this.cancel} open={this.state.open}/>
 
-           <Dialog display={<AddRole/> }
+           <Dialog title='Add new Role' display={<AddRole/> }
            save={this.saveRole}
            cancel={this.cancelRole} open={this.state.show}/>
           <SnackBar open={this.state.snack} message={this.state.message}/>

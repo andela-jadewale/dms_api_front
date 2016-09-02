@@ -2,6 +2,7 @@ var dataSource = {};
 var content = {};
 var userData = {};
 var documentData = {};
+var password = '';
 
 var getSource = function (source) {
   'use strict';
@@ -45,6 +46,18 @@ var getDocData = function () {
   return documentData.data;
 };
 
+var setPassword = function (obj) {
+  'use strict';
+
+  password = obj;
+};
+
+var getPassword = function () {
+  'use strict';
+
+  return password;
+};
+
 module.exports = {
   getSource: getSource,
   getContent: getContent,
@@ -52,6 +65,8 @@ module.exports = {
   setUserData: setUserData,
   getUserData: getUserData,
   setDocData: setDocData,
-  getDocData: getDocData
+  getDocData: getDocData,
+  setPassword: setPassword,
+  getPassword: getPassword
 };
 

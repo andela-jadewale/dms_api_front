@@ -63,7 +63,7 @@ global.window.test = true;
     it('should test the first snack bar', function () {
        expect(snackBar.nodes[0].props.message).to.equal('Success');
     })
-/*
+
     it('should test the second snack bar', function () {
        expect(snackBar.nodes[1].props.message).to.equal('Invalid Username or password');
     })
@@ -89,7 +89,7 @@ global.window.test = true;
         expect(user.view).to.equal('Authentication Failed');
       });
     })
-    */
+
 
   })
 

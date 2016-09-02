@@ -10,6 +10,7 @@ var dispatcher = require('../dispatcher/dispatcher.js'),
   DataSource = require('../services/DataSource.js'),
   data = '',
   Errors = require('../services/Error.js'),
+  userDetail = {},
   browserHistory = require('react-router').browserHistory;
 
 function User() {
@@ -48,6 +49,7 @@ function User() {
   }
 
   function sendRequest(obj) {
+    userDetail = obj.data;
     switch(obj.type) {
       case 'login': UserHelper.logIn(loginUrl, 'POST', obj.data, processLogIn);
       break;
@@ -70,6 +72,8 @@ function User() {
       getSelf().setState({open: true});
       user.view = 'user created';
       clearSignUp();
+      UserHelper.logIn(loginUrl, 'POST', {'username': userDetail.username,
+        'password': userDetail.password}, processLogIn)
     }
     else{
       getSelf().setState({errors: true});
@@ -193,7 +197,8 @@ function User() {
     onChange: onChange,
     getRoles: getRoles,
     getSelf: getSelf,
-    setData: setData
+    setData: setData,
+    getData: getData
   }
 
 }
